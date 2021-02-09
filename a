@@ -1,0 +1,53 @@
+[33mcommit 3f7159915858592978e2cfbcfb88d3d2001cb55b[m[33m ([m[1;36mHEAD -> [m[1;32mmanylinks[m[33m, [m[1;31morigin/manylinks[m[33m)[m
+Author: Lucas Bull <lucas.bull@gmail.com>
+Date:   Tue Feb 9 10:28:34 2021 -0500
+
+    Added gravity and floor.
+
+[33mcommit 10efb8ae2f2c187eecd3278c6403e06483aac631[m[33m ([m[1;31morigin/onelink[m[33m, [m[1;32monelink[m[33m)[m
+Author: Lucas Bull <lucas.bull@gmail.com>
+Date:   Mon Feb 8 18:01:37 2021 -0500
+
+    Finished onelink branch.
+
+[33mcommit 683292ac9b9f060f034aca099b3c3a8b4f73d4fa[m
+Author: Lucas Bull <lucas.bull@gmail.com>
+Date:   Sat Feb 6 17:02:54 2021 -0500
+
+    Added generate.py to repo.
+
+[33mcommit c413fb6949f5374090a6eac01d1e4dfcd43db74c[m
+Author: Lucas Bull <lucas.bull@gmail.com>
+Date:   Sat Feb 6 16:55:25 2021 -0500
+
+    Add pyrosim to onelink branch repo
+
+[33mcommit 805018a11f0a86ad3d6eda0cba1e51bebd93de4b[m[33m ([m[1;31morigin/simulation[m[33m, [m[1;31morigin/links[m[33m, [m[1;32msimulation[m[33m, [m[1;32mlinks[m[33m)[m
+Author: Lucas Bull <lucas.bull@gmail.com>
+Date:   Thu Feb 4 18:43:01 2021 -0500
+
+    Created blank simulation.
+
+[33mcommit 544e1beb6ec0d77e99524da7d3582a49041ce1c7[m
+Author: Lucas Bull <lucas.bull@gmail.com>
+Date:   Thu Feb 4 18:17:14 2021 -0500
+
+    Created physicsClient object.
+
+[33mcommit dcd0c11034209569f54dfdac124ad7af8bca34cd[m
+Author: Lucas Bull <lucas.bull@gmail.com>
+Date:   Thu Feb 4 18:13:35 2021 -0500
+
+    Imported pybullet.
+
+[33mcommit 9d07dea7b5ea968139cc63ad23d0d2b95366d75a[m
+Author: Lucas Bull <lucas.bull@gmail.com>
+Date:   Thu Feb 4 18:09:44 2021 -0500
+
+    Starting work on simulation.
+
+[33mcommit 25ca5fe7e6613de30e1771062b09598527b02359[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m
+Author: lucasbull <78557518+lucasbull@users.noreply.github.com>
+Date:   Thu Feb 4 17:30:09 2021 -0500
+
+    Initial commit
