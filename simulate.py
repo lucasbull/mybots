@@ -3,6 +3,7 @@ import time
 import pybullet_data
 import pyrosim.pyrosim as pyrosim
 import numpy
+import os.path
 
 physicsClient = p.connect(p.GUI)
 p.setAdditionalSearchPath(pybullet_data.getDataPath())
@@ -23,4 +24,5 @@ for x in range(1000):
    backLegSensorValues[x] = pyrosim.Get_Touch_Sensor_Value_For_Link("BackLeg")
    time.sleep(1/60)
 print(backLegSensorValues)
+numpy.save('C:/Users/lucas/Documents/git/CS206/mybots/data/backLegSensorData', backLegSensorValues)
 p.disconnect()
