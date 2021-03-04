@@ -10,6 +10,7 @@ class ROBOT:
 		self.robot = p.loadURDF("body.urdf")
 		pyrosim.Prepare_To_Simulate("body.urdf")
 		self.Prepare_To_Sense()
+		self.Prepare_To_Act()
 
 
 	def Prepare_To_Sense(self):
@@ -33,8 +34,9 @@ class ROBOT:
 
 		for jointName in pyrosim.jointNamesToIndices:
 			self.motors[jointName] = MOTOR(jointName)
+			print(jointName)
 
-	def Act(self):
+	def Act(self, time):
 
 		for motorName in self.motors:
-			self.motors[motorName].setValue()
+			self.motors[motorName].Set_Value(self.robot, time)

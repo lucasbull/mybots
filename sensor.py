@@ -11,7 +11,6 @@ class SENSOR:
 
 	def Get_Value(self, time):
 		self.values[time] = pyrosim.Get_Touch_Sensor_Value_For_Link(self.linkName)
-		
-		if time == c.simulationSize - 1:
-			print(self.values)
-		
+
+	def Save_Values(self):
+		numpy.save('data/' + self.linkName, self.values)

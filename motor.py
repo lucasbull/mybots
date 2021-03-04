@@ -8,7 +8,7 @@ class MOTOR:
 	def __init__(self, jointName):
 
 		self.jointName = jointName
-		self.prepare_To_Act()
+		self.Prepare_To_Act()
 
 	def Prepare_To_Act(self):
 
@@ -17,13 +17,16 @@ class MOTOR:
 		self.offset = c.phaseOffsetBack
 		self.pi = c.pi
 
+		if self.jointName == "Torso_FrontLeg":
+			self.frequency = self.frequency/2
+
 		self.i = numpy.linspace(-self.pi, self.pi, c.simulationSize)
-		self.motorValuesBack = self.amplitude * numpy.sin(self.frequency  * self.i + self.offset)
-		self.motorValuesFront = self.amplitude * numpy.sin(self.frequency  * self.i + self.offset)
+		self.motorValues = self.amplitude * numpy.sin(self.frequency  * self.i + self.offset)
 
-	def Set_Value(self):
+	def Set_Value(self, robot, time):
 
-		pyrosim.Set_Motor_For_Joint(bodyIndex = robot, jointName = "Torso_BackLeg", 
-		controlMode = p.POSITION_CONTROL, targetPosition = targetAnglesBack[x], maxForce = c.motorMaxForce)	
+		pyrosim.Set_Motor_For_Joint(bodyIndex = robot, jointName = self.jointName, 
+		controlMode = p.POSITION_CONTROL, targetPosition = self.motorValues[time], maxForce = c.motorMaxForce)	
 
-		#CURRENTLY ON STEP 92
+	def Save_Values(self):
+		numpy.save('data/' + self.jointName, self.motorValues)
