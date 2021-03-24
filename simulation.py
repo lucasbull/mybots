@@ -7,9 +7,15 @@ import time
 
 class SIMULATION:
 
-	def __init__(self):
+	def __init__(self, directOrGUI):
 
-		self.physicsClient = p.connect(p.GUI)
+		self.directOrGUI = directOrGUI
+
+		if directOrGUI == "DIRECT":
+			self.physicsClient = p.connect(p.DIRECT)
+		else:
+			self.physicsClient = p.connect(p.GUI)
+			
 		p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
 		p.setGravity(c.gravity_x,c.gravity_y,c.gravity_z)
@@ -23,7 +29,13 @@ class SIMULATION:
 			self.robot.Sense(t)
 			self.robot.Think()
 			self.robot.Act(t)
-			time.sleep(c.timeStep)
+
+			if self.directOrGUI == "DIRECT":
+				time.sleep(c.timeStepDirect)
+
+			if self.directOrGUI == "GUI":
+
+				time.sleep(c.timeStepGUI)
 
 	def Get_Fitness(self):
 

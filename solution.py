@@ -1,6 +1,7 @@
 import numpy
 import pyrosim.pyrosim as pyrosim
 import os
+import random
 
 class SOLUTION:
 
@@ -9,12 +10,15 @@ class SOLUTION:
 		self.weights = numpy.random.rand(3, 2)
 		self.weights = self.weights * 2 - 1
 
-	def Evaluate(self):
+	def Evaluate(self, string):
 
 		self.Create_World()
 		self.Create_Body()
 		self.Create_Brain()
-		os.system("python simulate.py")
+		os.system("python simulate.py " + string)
+		fitness = open("fitness.txt", "r")
+		self.fitness = float(fitness.read())
+		fitness.close()
 
 	def Create_World(self):
 		pyrosim.Start_SDF("world.sdf")
@@ -54,3 +58,9 @@ class SOLUTION:
 				self.weights[currentColumn][currentRow])
 
 		pyrosim.End()
+
+	def Mutate(self):
+
+		randomColumn = random.randint(0, 2)
+		randomRow = random.randint(0, 1)
+		self.weights[randomColumn][randomRow] = random.random() * 2 - 1
