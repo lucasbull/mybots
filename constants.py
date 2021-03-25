@@ -9,4 +9,4 @@ motorMaxForce = 25
 timeStepDirect = 0
 timeStepGUI = 1/60
 
-numberOfGenerations = 20
+numberOfGenerations = 100
