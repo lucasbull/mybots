@@ -49,13 +49,13 @@ class SOLUTION:
 		pyrosim.Send_Motor_Neuron( name = 3 , jointName = "Torso_BackLeg")
 		pyrosim.Send_Motor_Neuron( name = 4 , jointName = "Torso_FrontLeg")
 
-		for currentColumn in range(3):
+		for currentRow in range(3):
 
 
-			for currentRow in range(2):
+			for currentColumn in range(2):
 
-				pyrosim.Send_Synapse(sourceNeuronName = currentColumn , targetNeuronName = currentRow + 3 , weight = 
-				self.weights[currentColumn][currentRow])
+				pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn + 3 , weight = 
+				self.weights[currentRow][currentColumn])
 
 		pyrosim.End()
 
