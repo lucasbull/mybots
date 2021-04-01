@@ -7,7 +7,7 @@ import time
 
 class SIMULATION:
 
-	def __init__(self, directOrGUI):
+	def __init__(self, directOrGUI, solutionID):
 
 		self.directOrGUI = directOrGUI
 
@@ -21,7 +21,7 @@ class SIMULATION:
 		p.setGravity(c.gravity_x,c.gravity_y,c.gravity_z)
 
 		self.world = WORLD()
-		self.robot = ROBOT()
+		self.robot = ROBOT(solutionID)
 
 	def Run(self):
 		for t in range(c.simulationSize):
