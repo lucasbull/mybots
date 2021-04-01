@@ -30,9 +30,6 @@ class SIMULATION:
 			self.robot.Think()
 			self.robot.Act(t)
 
-			if self.directOrGUI == "DIRECT":
-				time.sleep(c.timeStepDirect)
-
 			if self.directOrGUI == "GUI":
 
 				time.sleep(c.timeStepGUI)

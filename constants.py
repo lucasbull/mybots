@@ -6,7 +6,6 @@ gravity_x = 0
 gravity_y = 0
 gravity_z = -9.8
 motorMaxForce = 25
-timeStepDirect = 0
 timeStepGUI = 1/60
 
-numberOfGenerations = 100
+numberOfGenerations = 50
