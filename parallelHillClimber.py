@@ -72,6 +72,9 @@ class PARALLEL_HILL_CLIMBER:
 			solutions[solution].Wait_For_Simulation_To_End()
 
 	def Show_Best(self):
-
-		#self.parent.Evaluate("GUI")
-		pass
+		currentFitness = 100
+		for key in self.parents:
+			if self.parents[key].fitness < currentFitness:
+				bestKey = key
+				currentFitness = self.parents[key].fitness
+		self.parents[bestKey].Start_Simulation("GUI")
