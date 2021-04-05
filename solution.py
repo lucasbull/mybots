@@ -27,7 +27,6 @@ class SOLUTION:
 			time.sleep(0.01)
 		fitness = open(fitnessFileName, "r")
 		self.fitness = float(fitness.read())
-		print(self.fitness)
 		fitness.close()
 		os.system("del " + fitnessFileName)
 
