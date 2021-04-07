@@ -9,6 +9,7 @@ class PARALLEL_HILL_CLIMBER:
 
 		os.system("del brain*.nndf")
 		os.system("del fitness*.txt")
+		os.system("del tmp*.txt")
 
 		self.nextAvailableID = 0
 
