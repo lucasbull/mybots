@@ -8,5 +8,8 @@ gravity_z = -9.8
 motorMaxForce = 25
 timeStepGUI = 1/60
 
-populationSize = 10
-numberOfGenerations = 10
+populationSize = 1
+numberOfGenerations = 1
+
+numSensorNeurons = 3
+numMotorNeurons = 2

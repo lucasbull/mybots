@@ -21,6 +21,7 @@ class PARALLEL_HILL_CLIMBER:
 			self.parents[parentNumber] = SOLUTION(self.nextAvailableID)
 			self.nextAvailableID = self.nextAvailableID + 1
 
+
 	def Evolve(self):
 
 		self.Evaluate(self.parents)
@@ -63,11 +64,12 @@ class PARALLEL_HILL_CLIMBER:
 		print()
 		for key in self.parents:
 			print("Parent:", self.parents[key].fitness, "Child:", self.children[key].fitness)
+			exit()
 		print()
 
 	def Evaluate(self, solutions):
 		for solution in solutions:
-			solutions[solution].Start_Simulation("DIRECT")
+			solutions[solution].Start_Simulation("GUI")
 
 		for solution in solutions:
 			solutions[solution].Wait_For_Simulation_To_End()
