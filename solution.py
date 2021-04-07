@@ -37,13 +37,8 @@ class SOLUTION:
 		pyrosim.End()
 
 	def Create_Body(self):
-<<<<<<< HEAD
-		pyrosim.Start_URDF("body.urdf")
-		pyrosim.Send_Cube(name="Torso", pos=[1.5,0,1.5] ,
-=======
 		pyrosim.Start_URDF("body" + str(self.myID) + ".urdf")
-		pyrosim.Send_Cube(name="Torso", pos=[0,0,1] ,
->>>>>>> aa0ffea (Worked with dad.)
+		pyrosim.Send_Cube(name="Torso", pos=[1.5,0,1.5] ,
 		size=[1,1,1])
 		pyrosim.Send_Joint( name = "Torso_BackLeg" , parent= "Torso" , 
 		child = "BackLeg" , type = "revolute", position = "1 0 1")
