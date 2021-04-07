@@ -22,7 +22,7 @@ class SIMULATION:
 
 		p.setGravity(c.gravity_x,c.gravity_y,c.gravity_z)
 
-		self.world = WORLD()
+		self.world = WORLD(solutionID)
 		self.robot = ROBOT(solutionID)
 
 	def Run(self):
