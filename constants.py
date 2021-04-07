@@ -13,3 +13,4 @@ numberOfGenerations = 1
 
 numSensorNeurons = 3
 numMotorNeurons = 2
+
