@@ -31,14 +31,19 @@ class SOLUTION:
 		os.system("del " + fitnessFileName)
 
 	def Create_World(self):
-		pyrosim.Start_SDF("world.sdf")
+		pyrosim.Start_SDF("world" + str(self.myID) + ".sdf")
 		pyrosim.Send_Cube(name="Box", pos=[-3,3,0.5] ,
 		size=[1,1,1])
 		pyrosim.End()
 
 	def Create_Body(self):
+<<<<<<< HEAD
 		pyrosim.Start_URDF("body.urdf")
 		pyrosim.Send_Cube(name="Torso", pos=[1.5,0,1.5] ,
+=======
+		pyrosim.Start_URDF("body" + str(self.myID) + ".urdf")
+		pyrosim.Send_Cube(name="Torso", pos=[0,0,1] ,
+>>>>>>> aa0ffea (Worked with dad.)
 		size=[1,1,1])
 		pyrosim.Send_Joint( name = "Torso_BackLeg" , parent= "Torso" , 
 		child = "BackLeg" , type = "revolute", position = "1 0 1")
