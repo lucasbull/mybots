@@ -12,6 +12,7 @@ class PARALLEL_HILL_CLIMBER:
 		os.system("del tmp*.txt")
 		os.system("del body*.urdf")
 		os.system("del world*.sdf")
+		exit()
 
 		self.nextAvailableID = 0
 
