@@ -19,13 +19,14 @@ class SOLUTION:
 		self.Create_World()
 		self.Create_Body()
 		self.Create_Brain()
-		os.system("start /B python simulate.py " + directOrGUI + " " + str(self.myID))
+		string = "start /B python simulate.py " + directOrGUI + " " + str(self.myID)
+		os.system(string)
 
 	def Wait_For_Simulation_To_End(self):
 		fitnessFileName = "fitness" + str(self.myID) + ".txt"
 		while not os.path.exists(fitnessFileName):
 			time.sleep(0.01)
-		time.sleep(0.05)
+		time.sleep(0.01)
 		fitness = open(fitnessFileName, "r")
 		self.fitness = float(fitness.read())
 		fitness.close()
