@@ -1,2 +1,7 @@
 /data
 __pycache__
+brain*.nndf
+body*.urdf
+fitness*.txt
+tmp*.txt
+world*.sdf

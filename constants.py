@@ -1,6 +1,6 @@
 import numpy as np
 
-simulationSize = 1000
+simulationSize = 100
 pi = np.pi
 gravity_x = 0
 gravity_y = 0

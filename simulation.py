@@ -12,18 +12,25 @@ class SIMULATION:
 		self.directOrGUI = directOrGUI
 
 		if directOrGUI == "DIRECT":
-			self.physicsClient = p.connect(p.DIRECT)
+			cid = p.connect(p.DIRECT)
+			if cid < 0:
+				p.connect(p.DIRECT)
+
 		elif directOrGUI == "GUI":
-			self.physicsClient = p.connect(p.GUI)
+			cid = p.connect(p.GUI)
+			if cid < 0:
+				p.connect(p.GUI)
 		else:
 			raise Exception("directOrGUI must be DIRECT or GUI. Recieved " + directOrGUI)
-			
+		
 		p.setAdditionalSearchPath(pybullet_data.getDataPath())
 
 		p.setGravity(c.gravity_x,c.gravity_y,c.gravity_z)
 
+
 		self.world = WORLD(solutionID)
 		self.robot = ROBOT(solutionID)
+
 
 	def Run(self):
 		for t in range(c.simulationSize):
