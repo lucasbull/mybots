@@ -70,7 +70,7 @@ class PARALLEL_HILL_CLIMBER:
 
 	def Evaluate(self, solutions):
 		for solution in solutions:
-			solutions[solution].Start_Simulation("GUI")
+			solutions[solution].Start_Simulation("GUI", True)
 
 		for solution in solutions:
 			solutions[solution].Wait_For_Simulation_To_End()
@@ -81,5 +81,5 @@ class PARALLEL_HILL_CLIMBER:
 			if self.parents[key].fitness < currentFitness:
 				bestKey = key
 				currentFitness = self.parents[key].fitness
-		self.parents[bestKey].Start_Simulation("GUI")
-		print(self.parents[bestKey].fitness)
+		self.parents[bestKey].Start_Simulation("GUI", False)
+		print("Best fitness: " self.parents[bestKey].fitness)

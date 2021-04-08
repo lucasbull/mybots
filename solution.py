@@ -13,11 +13,11 @@ class SOLUTION:
 		self.weights = numpy.random.rand(3, 2)
 		self.weights = self.weights * 2 - 1
 
-	def Start_Simulation(self, directOrGUI):
+	def Start_Simulation(self, directOrGUI, needFitness):
 		self.Create_World()
 		self.Create_Body()
 		self.Create_Brain()
-		string = "start /B python simulate.py " + directOrGUI + " " + str(self.myID)
+		string = "start /B python simulate.py " + directOrGUI + " " + str(self.myID) + " " + str(needFitness)
 		os.system(string)
 
 	def Wait_For_Simulation_To_End(self):
