@@ -82,4 +82,4 @@ class PARALLEL_HILL_CLIMBER:
 				bestKey = key
 				currentFitness = self.parents[key].fitness
 		self.parents[bestKey].Start_Simulation("GUI", False)
-		print("Best fitness: " self.parents[bestKey].fitness)
+		print("Best fitness: " + str(self.parents[bestKey].fitness))
