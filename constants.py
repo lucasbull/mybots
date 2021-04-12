@@ -9,7 +9,7 @@ motorMaxForce = 50
 timeStepGUI = 1/60
 motorJointRange = 0.2
 
-populationSize = 10
+populationSize = 20
 numberOfGenerations = 10
 
 numSensorNeurons = 4
