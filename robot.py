@@ -4,6 +4,7 @@ from sensor import SENSOR
 from motor import MOTOR
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 import os
+import constants as c
 
 class ROBOT:
 
@@ -48,7 +49,7 @@ class ROBOT:
 			if self.nn.Is_Motor_Neuron(neuronName):
 
 				jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
-				desiredAngle = self.nn.Get_Value_Of(neuronName)
+				desiredAngle = c.motorJointRange * self.nn.Get_Value_Of(neuronName)
 				self.motors[jointName].Set_Value(self.robot, desiredAngle)
 
 	def Think(self):
@@ -60,6 +61,8 @@ class ROBOT:
 		stateOfLinkZero = p.getLinkState(self.robot, 0)
 		positionOfLinkZero = stateOfLinkZero[0]
 		xCoordinateOfLinkZero = positionOfLinkZero[0]
+		yCoordinateOfLinkZero = positionOfLinkZero[1]
+		fitnessValue = xCoordinateOfLinkZero + abs(yCoordinateOfLinkZero)
 		tempFitness = open("tmp" + self.solutionID + ".txt", "w")
 		tempFitness.write(str(xCoordinateOfLinkZero))
 		tempFitness.close()
