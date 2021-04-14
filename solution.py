@@ -64,10 +64,10 @@ class SOLUTION:
 		child = "RightFoot" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
 		pyrosim.Send_Cube(name="RightFoot", pos=[-0.5,0,0.125] ,
 		size=[2,1,0.25])
-		#pyrosim.Send_Joint( name = "UpperLeftLeg_LowerLeftLeg" , parent= "UpperLeftLeg" , 
-		#child = "LowerLeftLeg" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
-		#pyrosim.Send_Cube(name="LowerLeftLeg", pos=[0,0,-1] ,
-		#size=[1,1,2])
+		pyrosim.Send_Joint( name = "Torso_UpperLeftArm" , parent= "Torso" , 
+		child = "UpperLeftArm" , type = "revolute", position = "0 -1 7", jointAxis = "0 1 0")
+		pyrosim.Send_Cube(name="UpperLeftArm", pos=[0,-0.5,-0.875] ,
+		size=[1,1,1.75])
 		#pyrosim.Send_Joint( name = "UpperRightLeg_LowerRightLeg" , parent= "UpperRightLeg" , 
 		#child = "LowerRightLeg" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
 		#pyrosim.Send_Cube(name="LowerRightLeg", pos=[0,0,-1] ,
