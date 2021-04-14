@@ -34,10 +34,10 @@ class SIMULATION:
 
 	def Run(self):
 		for t in range(c.simulationSize):
-			p.stepSimulation()
-			self.robot.Sense(t)
-			self.robot.Think()
-			self.robot.Act(t)
+			#p.stepSimulation()
+			#self.robot.Sense(t)
+			#self.robot.Think()
+			#self.robot.Act(t)
 
 			if self.directOrGUI == "GUI":
 
