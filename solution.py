@@ -60,10 +60,10 @@ class SOLUTION:
 		child = "LeftFoot" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
 		pyrosim.Send_Cube(name="LeftFoot", pos=[-0.5,0,0.125] ,
 		size=[2,1,0.25])
-		#pyrosim.Send_Joint( name = "UpperRightLeg_LowerRightLeg" , parent= "UpperRightLeg" , 
-		#child = "LowerRightLeg" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
-		#pyrosim.Send_Cube(name="LowerRightLeg", pos=[0,0,-1] ,
-		#size=[1,1,2])
+		pyrosim.Send_Joint( name = "LowerRightLeg_RightFoot" , parent= "LowerRightLeg" , 
+		child = "RightFoot" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
+		pyrosim.Send_Cube(name="RightFoot", pos=[-0.5,0,0.125] ,
+		size=[2,1,0.25])
 		#pyrosim.Send_Joint( name = "UpperLeftLeg_LowerLeftLeg" , parent= "UpperLeftLeg" , 
 		#child = "LowerLeftLeg" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
 		#pyrosim.Send_Cube(name="LowerLeftLeg", pos=[0,0,-1] ,
