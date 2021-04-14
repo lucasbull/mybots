@@ -72,22 +72,22 @@ class SOLUTION:
 		child = "LowerLeftArm" , type = "revolute", position = "0 -0.375 -1.75", jointAxis = "0 1 0")
 		pyrosim.Send_Cube(name="LowerLeftArm", pos=[0,0,-0.875] ,
 		size=[0.75,0.75,1.75])
-		#pyrosim.Send_Joint( name = "FrontLeg_LowerFrontLeg" , parent= "FrontLeg" , 
-		#child = "LowerFrontLeg" , type = "revolute", position = "0 1 0", jointAxis = "1 0 0")
-		#pyrosim.Send_Cube(name="LowerFrontLeg", pos=[0,0,-0.5] ,
-		#size=[0.2,0.2,1])
-		#pyrosim.Send_Joint( name = "BackLeg_LowerBackLeg" , parent= "BackLeg" , 
-		#child = "LowerBackLeg" , type = "revolute", position = "0 -1 0", jointAxis = "1 0 0")
-		#pyrosim.Send_Cube(name="LowerBackLeg", pos=[0,0,-0.5] ,
-		#size=[0.2,0.2,1])
-		#pyrosim.Send_Joint( name = "LeftLeg_LowerLeftLeg" , parent= "LeftLeg" , 
-		#child = "LowerLeftLeg" , type = "revolute", position = "-1 0 0", jointAxis = "0 1 0")
-		#pyrosim.Send_Cube(name="LowerLeftLeg", pos=[0,0,-0.5] ,
-		#size=[0.2,0.2,1])
-		#pyrosim.Send_Joint( name = "RightLeg_LowerRightLeg" , parent= "RightLeg" , 
-		#child = "LowerRightLeg" , type = "revolute", position = "1 0 0", jointAxis = "0 1 0")
-		#pyrosim.Send_Cube(name="LowerRightLeg", pos=[0,0,-0.5] ,
-		#size=[0.2,0.2,1])
+		pyrosim.Send_Joint( name = "Torso_UpperRightArm" , parent= "Torso" , 
+		child = "UpperRightArm" , type = "revolute", position = "0 1 7", jointAxis = "0 1 0")
+		pyrosim.Send_Cube(name="UpperRightArm", pos=[0,0.375,-0.875] ,
+		size=[0.75,0.75,1.75])
+		pyrosim.Send_Joint( name = "UpperRightArm_LowerRightArm" , parent= "UpperRightArm" , 
+		child = "LowerRightArm" , type = "revolute", position = "0 0.375 -1.75", jointAxis = "0 1 0")
+		pyrosim.Send_Cube(name="LowerRightArm", pos=[0,0,-0.875] ,
+		size=[0.75,0.75,1.75])
+		pyrosim.Send_Joint( name = "Torso_Neck" , parent= "Torso" , 
+		child = "Neck" , type = "revolute", position = "0 0 7", jointAxis = "0 1 0")
+		pyrosim.Send_Cube(name="Neck", pos=[0,0,0] ,
+		size=[0.75,0.75,1])
+		pyrosim.Send_Joint( name = "Neck_Head" , parent= "Neck" , 
+		child = "Head" , type = "revolute", position = "0 0 1", jointAxis = "0 1 0")
+		pyrosim.Send_Cube(name="Head", pos=[0,0,0] ,
+		size=[1,1,1.5])
 		pyrosim.End()
 
 
