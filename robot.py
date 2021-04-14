@@ -58,10 +58,10 @@ class ROBOT:
 
 	def Get_Fitness(self):
 
-		stateOfLinkZero = p.getLinkState(self.robot, 0)
-		positionOfLinkZero = stateOfLinkZero[0]
-		xCoordinateOfLinkZero = positionOfLinkZero[0]
-		yCoordinateOfLinkZero = positionOfLinkZero[1]
+		basePositionAndOrientation = p.getBasePositionAndOrientation(self.robot)
+		basePosition = basePositionAndOrientation[0]
+		xPosition = basePosition[0]
+		yPosition = basePosition[1]
 		fitnessValue = xCoordinateOfLinkZero + abs(yCoordinateOfLinkZero)
 		tempFitness = open("tmp" + self.solutionID + ".txt", "w")
 		tempFitness.write(str(xCoordinateOfLinkZero))
