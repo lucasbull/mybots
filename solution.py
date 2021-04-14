@@ -52,10 +52,26 @@ class SOLUTION:
 		child = "LowerLeftLeg" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
 		pyrosim.Send_Cube(name="LowerLeftLeg", pos=[0,0,-1] ,
 		size=[1,1,2])
-		#pyrosim.Send_Joint( name = "Torso_RightLeg" , parent= "Torso" , 
-		#child = "RightLeg" , type = "revolute", position = "0.5 0 1", jointAxis = "0 1 0")
-		#pyrosim.Send_Cube(name="RightLeg", pos=[0.5,0,0] ,
-		#size=[1,0.2,0.2])
+		pyrosim.Send_Joint( name = "UpperRightLeg_LowerRightLeg" , parent= "UpperRightLeg" , 
+		child = "LowerRightLeg" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
+		pyrosim.Send_Cube(name="LowerRightLeg", pos=[0,0,-1] ,
+		size=[1,1,2])
+		pyrosim.Send_Joint( name = "LowerLeftLeg_LeftFoot" , parent= "LowerLeftLeg" , 
+		child = "LeftFoot" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
+		pyrosim.Send_Cube(name="LeftFoot", pos=[-0.5,0,0.125] ,
+		size=[2,1,0.25])
+		#pyrosim.Send_Joint( name = "UpperRightLeg_LowerRightLeg" , parent= "UpperRightLeg" , 
+		#child = "LowerRightLeg" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
+		#pyrosim.Send_Cube(name="LowerRightLeg", pos=[0,0,-1] ,
+		#size=[1,1,2])
+		#pyrosim.Send_Joint( name = "UpperLeftLeg_LowerLeftLeg" , parent= "UpperLeftLeg" , 
+		#child = "LowerLeftLeg" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
+		#pyrosim.Send_Cube(name="LowerLeftLeg", pos=[0,0,-1] ,
+		#size=[1,1,2])
+		#pyrosim.Send_Joint( name = "UpperRightLeg_LowerRightLeg" , parent= "UpperRightLeg" , 
+		#child = "LowerRightLeg" , type = "revolute", position = "0 0 -2", jointAxis = "0 1 0")
+		#pyrosim.Send_Cube(name="LowerRightLeg", pos=[0,0,-1] ,
+		#size=[1,1,2])
 		#pyrosim.Send_Joint( name = "FrontLeg_LowerFrontLeg" , parent= "FrontLeg" , 
 		#child = "LowerFrontLeg" , type = "revolute", position = "0 1 0", jointAxis = "1 0 0")
 		#pyrosim.Send_Cube(name="LowerFrontLeg", pos=[0,0,-0.5] ,
