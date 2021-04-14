@@ -62,8 +62,8 @@ class ROBOT:
 		basePosition = basePositionAndOrientation[0]
 		xPosition = basePosition[0]
 		yPosition = basePosition[1]
-		fitnessValue = xCoordinateOfLinkZero + abs(yCoordinateOfLinkZero)
+		fitnessValue = yPosition + abs(xPosition)
 		tempFitness = open("tmp" + self.solutionID + ".txt", "w")
-		tempFitness.write(str(xCoordinateOfLinkZero))
+		tempFitness.write(str(fitnessValue))
 		tempFitness.close()
 		os.system("rename tmp" + self.solutionID + ".txt" " fitness" + self.solutionID + ".txt")
