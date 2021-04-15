@@ -101,7 +101,7 @@ class SOLUTION:
 		child = "RightToes" , type = "revolute", position = str(float(-1.125/c.robotScale)) + " 0 0", jointAxis = "0 1 0")
 		pyrosim.Send_Cube(name="RightToes", pos=[-0.125/c.robotScale,0,0] ,
 		size=[0.25/c.robotScale,1/c.robotScale,0.25/c.robotScale])
-		pyrosim.Send_Joint( name = "MiddleRightFoot_LeftHeel" , parent= "MiddleRightFoot" , 
+		pyrosim.Send_Joint( name = "MiddleRightFoot_RightHeel" , parent= "MiddleRightFoot" , 
 		child = "RightHeel" , type = "revolute", position = str(float(0.125/c.robotScale)) + " 0 0", jointAxis = "0 1 0")
 		pyrosim.Send_Cube(name="RightHeel", pos=[0.125/c.robotScale,0,0] ,
 		size=[0.25/c.robotScale,1/c.robotScale,0.25/c.robotScale])
@@ -140,19 +140,55 @@ class SOLUTION:
 
 
 	def Create_Brain(self):
+		#Brain
 		pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")
+
+		#Sensor Neurons
+		#Left foot
 		pyrosim.Send_Sensor_Neuron(name = 0 , linkName = "MiddleLeftFoot")
-		pyrosim.Send_Sensor_Neuron(name = 1 , linkName = "MiddleRightFoot")
-		pyrosim.Send_Motor_Neuron( name = 2 , jointName = "Torso_UpperLeftLeg")
-		pyrosim.Send_Motor_Neuron( name = 3 , jointName = "Torso_UpperRightLeg")
-		pyrosim.Send_Motor_Neuron( name = 4 , jointName = "UpperLeftLeg_LowerLeftLeg")
-		pyrosim.Send_Motor_Neuron( name = 5 , jointName = "UpperRightLeg_LowerRightLeg")
-		pyrosim.Send_Motor_Neuron( name = 6 , jointName = "LowerLeftLeg_MiddleLeftFoot")
-		pyrosim.Send_Motor_Neuron( name = 7 , jointName = "LowerRightLeg_MiddleRightFoot")
-		pyrosim.Send_Motor_Neuron( name = 8 , jointName = "Torso_UpperLeftArm")
-		pyrosim.Send_Motor_Neuron( name = 9 , jointName = "UpperLeftArm_LowerLeftArm")
-		pyrosim.Send_Motor_Neuron( name = 10 , jointName = "Torso_UpperRightArm")
-		pyrosim.Send_Motor_Neuron( name = 11 , jointName = "UpperRightArm_LowerRightArm")
+		pyrosim.Send_Sensor_Neuron(name = 1 , linkName = "LeftLeftFoot")
+		pyrosim.Send_Sensor_Neuron(name = 2 , linkName = "RightLeftFoot")
+		pyrosim.Send_Sensor_Neuron(name = 3 , linkName = "LeftToes")
+		pyrosim.Send_Sensor_Neuron(name = 4 , linkName = "LeftHeel")
+
+		#Right foot
+		pyrosim.Send_Sensor_Neuron(name = 5 , linkName = "MiddleRightFoot")
+		pyrosim.Send_Sensor_Neuron(name = 6 , linkName = "LeftRightFoot")
+		pyrosim.Send_Sensor_Neuron(name = 7 , linkName = "RightRightFoot")
+		pyrosim.Send_Sensor_Neuron(name = 8 , linkName = "RightToes")
+		pyrosim.Send_Sensor_Neuron(name = 9 , linkName = "RightHeel")
+
+
+		#Motor Neurons
+		#Left foot
+		pyrosim.Send_Motor_Neuron( name = 10 , jointName = "LowerLeftLeg_MiddleLeftFoot")
+		pyrosim.Send_Motor_Neuron( name = 11 , jointName = "MiddleLeftFoot_LeftLeftFoot")
+		pyrosim.Send_Motor_Neuron( name = 12 , jointName = "MiddleLeftFoot_RightLeftFoot")
+		pyrosim.Send_Motor_Neuron( name = 13 , jointName = "MiddleLeftFoot_LeftToes")
+		pyrosim.Send_Motor_Neuron( name = 14 , jointName = "MiddleLeftFoot_LeftHeel")
+
+		#Right foot
+		pyrosim.Send_Motor_Neuron( name = 15 , jointName = "LowerRightLeg_MiddleRightFoot")
+		pyrosim.Send_Motor_Neuron( name = 16 , jointName = "MiddleRightFoot_LeftRightFoot")
+		pyrosim.Send_Motor_Neuron( name = 17 , jointName = "MiddleRightFoot_RightRightFoot")
+		pyrosim.Send_Motor_Neuron( name = 18 , jointName = "MiddleRightFoot_RightToes")
+		pyrosim.Send_Motor_Neuron( name = 19 , jointName = "MiddleRightFoot_RightHeel")
+
+		#Left leg
+		pyrosim.Send_Motor_Neuron( name = 20 , jointName = "Torso_UpperLeftLeg")
+		pyrosim.Send_Motor_Neuron( name = 21 , jointName = "UpperLeftLeg_LowerLeftLeg")
+
+		#Right leg
+		pyrosim.Send_Motor_Neuron( name = 22 , jointName = "Torso_UpperRightLeg")
+		pyrosim.Send_Motor_Neuron( name = 23 , jointName = "UpperRightLeg_LowerRightLeg")
+
+		#Left arm
+		pyrosim.Send_Motor_Neuron( name = 24 , jointName = "Torso_UpperLeftArm")
+		pyrosim.Send_Motor_Neuron( name = 25 , jointName = "UpperLeftArm_LowerLeftArm")
+
+		#Right arm
+		pyrosim.Send_Motor_Neuron( name = 26 , jointName = "Torso_UpperRightArm")
+		pyrosim.Send_Motor_Neuron( name = 27 , jointName = "UpperRightArm_LowerRightArm")
 
 
 

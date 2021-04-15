@@ -12,8 +12,8 @@ motorJointRange = 0.35
 populationSize = 1
 numberOfGenerations = 1
 
-numSensorNeurons = 2
-numMotorNeurons = 10
+numSensorNeurons = 10
+numMotorNeurons = 18
 
 robotScale = 4
 
