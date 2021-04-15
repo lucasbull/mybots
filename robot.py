@@ -62,7 +62,7 @@ class ROBOT:
 		basePosition = basePositionAndOrientation[0]
 		xPosition = basePosition[0]
 		zPosition = basePosition[2]
-		fitnessValue = -3*zPosition + xPosition
+		fitnessValue = -2*zPosition + xPosition
 		tempFitness = open("tmp" + self.solutionID + ".txt", "w")
 		tempFitness.write(str(fitnessValue))
 		tempFitness.close()
