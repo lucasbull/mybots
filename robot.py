@@ -49,7 +49,12 @@ class ROBOT:
 			if self.nn.Is_Motor_Neuron(neuronName):
 
 				jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
-				desiredAngle = c.motorJointRange * self.nn.Get_Value_Of(neuronName)
+				desiredAngle = self.nn.Get_Value_Of(neuronName)
+				if desiredAngle < c.allowableTargetAngles[neuronName][0]:
+					desiredAngle = c.allowableTargetAngles[neuronName][0]
+				if desiredAngle > c.allowableTargetAngles[neuronName][1]:
+					desiredAngle = c.allowableTargetAngles[neuronName][1]
+				print(desiredAngle)
 				self.motors[jointName].Set_Value(self.robot, desiredAngle)
 
 	def Think(self):

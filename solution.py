@@ -106,36 +106,36 @@ class SOLUTION:
 		pyrosim.Send_Cube(name="RightHeel", pos=[0.125/c.robotScale,0,0] ,
 		size=[0.25/c.robotScale,1/c.robotScale,0.25/c.robotScale])
 
+		# #LEFT ARM
+		# pyrosim.Send_Joint( name = "Torso_UpperLeftArm" , parent= "Torso" , 
+		# child = "UpperLeftArm" , type = "revolute", position = "0 " + str(float(-1/c.robotScale)) + " " + str(float(7/c.robotScale)), jointAxis = "0 1 0")
+		# pyrosim.Send_Cube(name="UpperLeftArm", pos=[0,-0.375/c.robotScale,-0.875/c.robotScale] ,
+		# size=[0.75/c.robotScale,0.75/c.robotScale,1.75/c.robotScale])
+		# pyrosim.Send_Joint( name = "UpperLeftArm_LowerLeftArm" , parent= "UpperLeftArm" , 
+		# child = "LowerLeftArm" , type = "revolute", position = "0 " + str(float(-0.375/c.robotScale)) + " " + str(float(-1.75/c.robotScale)), jointAxis = "0 1 0")
+		# pyrosim.Send_Cube(name="LowerLeftArm", pos=[0,0,-0.875/c.robotScale] ,
+		# size=[0.75/c.robotScale,0.75/c.robotScale,1.75/c.robotScale])
 
-		#LEFT ARM
-		pyrosim.Send_Joint( name = "Torso_UpperLeftArm" , parent= "Torso" , 
-		child = "UpperLeftArm" , type = "revolute", position = "0 " + str(float(-1/c.robotScale)) + " " + str(float(7/c.robotScale)), jointAxis = "0 1 0")
-		pyrosim.Send_Cube(name="UpperLeftArm", pos=[0,-0.375/c.robotScale,-0.875/c.robotScale] ,
-		size=[0.75/c.robotScale,0.75/c.robotScale,1.75/c.robotScale])
-		pyrosim.Send_Joint( name = "UpperLeftArm_LowerLeftArm" , parent= "UpperLeftArm" , 
-		child = "LowerLeftArm" , type = "revolute", position = "0 " + str(float(-0.375/c.robotScale)) + " " + str(float(-1.75/c.robotScale)), jointAxis = "0 1 0")
-		pyrosim.Send_Cube(name="LowerLeftArm", pos=[0,0,-0.875/c.robotScale] ,
-		size=[0.75/c.robotScale,0.75/c.robotScale,1.75/c.robotScale])
+		# #RIGHT ARM
+		# pyrosim.Send_Joint( name = "Torso_UpperRightArm" , parent= "Torso" , 
+		# child = "UpperRightArm" , type = "revolute", position = "0 " + str(float(1/c.robotScale)) + " " + str(float(7/c.robotScale)), jointAxis = "0 1 0")
+		# pyrosim.Send_Cube(name="UpperRightArm", pos=[0,0.375/c.robotScale,-0.875/c.robotScale] ,
+		# size=[0.75/c.robotScale,0.75/c.robotScale,1.75/c.robotScale])
+		# pyrosim.Send_Joint( name = "UpperRightArm_LowerRightArm" , parent= "UpperRightArm" , 
+		# child = "LowerRightArm" , type = "revolute", position = "0 " + str(float(0.375/c.robotScale)) + " " + str(float(-1.75/c.robotScale)), jointAxis = "0 1 0")
+		# pyrosim.Send_Cube(name="LowerRightArm", pos=[0,0,-0.875/c.robotScale] ,
+		# size=[0.75/c.robotScale,0.75/c.robotScale,1.75/c.robotScale])
 
-		#RIGHT ARM
-		pyrosim.Send_Joint( name = "Torso_UpperRightArm" , parent= "Torso" , 
-		child = "UpperRightArm" , type = "revolute", position = "0 " + str(float(1/c.robotScale)) + " " + str(float(7/c.robotScale)), jointAxis = "0 1 0")
-		pyrosim.Send_Cube(name="UpperRightArm", pos=[0,0.375/c.robotScale,-0.875/c.robotScale] ,
-		size=[0.75/c.robotScale,0.75/c.robotScale,1.75/c.robotScale])
-		pyrosim.Send_Joint( name = "UpperRightArm_LowerRightArm" , parent= "UpperRightArm" , 
-		child = "LowerRightArm" , type = "revolute", position = "0 " + str(float(0.375/c.robotScale)) + " " + str(float(-1.75/c.robotScale)), jointAxis = "0 1 0")
-		pyrosim.Send_Cube(name="LowerRightArm", pos=[0,0,-0.875/c.robotScale] ,
-		size=[0.75/c.robotScale,0.75/c.robotScale,1.75/c.robotScale])
-
-		#NECK AND HEAD
-		pyrosim.Send_Joint( name = "Torso_Neck" , parent= "Torso" , 
-		child = "Neck" , type = "revolute", position = "0 0 " + str(float(7/c.robotScale)), jointAxis = "0 1 0")
-		pyrosim.Send_Cube(name="Neck", pos=[0,0,0] ,
-		size=[0.75/c.robotScale,0.75/c.robotScale,1/c.robotScale])
-		pyrosim.Send_Joint( name = "Neck_Head" , parent= "Neck" , 
-		child = "Head" , type = "revolute", position = "0 0 " + str(float(1/c.robotScale)), jointAxis = "0 1 0")
-		pyrosim.Send_Cube(name="Head", pos=[0,0,0] ,
-		size=[1/c.robotScale,1/c.robotScale,1.5/c.robotScale])
+		# #NECK AND HEAD
+		# pyrosim.Send_Joint( name = "Torso_Neck" , parent= "Torso" , 
+		# child = "Neck" , type = "revolute", position = "0 0 " + str(float(7/c.robotScale)), jointAxis = "0 1 0")
+		# pyrosim.Send_Cube(name="Neck", pos=[0,0,0] ,
+		# size=[0.75/c.robotScale,0.75/c.robotScale,1/c.robotScale])
+		# pyrosim.Send_Joint( name = "Neck_Head" , parent= "Neck" , 
+		# child = "Head" , type = "revolute", position = "0 0 " + str(float(1/c.robotScale)), jointAxis = "0 1 0")
+		# pyrosim.Send_Cube(name="Head", pos=[0,0,0] ,
+		# size=[1/c.robotScale,1/c.robotScale,1.5/c.robotScale])
+		
 		pyrosim.End()
 
 
@@ -183,14 +183,12 @@ class SOLUTION:
 		pyrosim.Send_Motor_Neuron( name = 23 , jointName = "UpperRightLeg_LowerRightLeg")
 
 		#Left arm
-		pyrosim.Send_Motor_Neuron( name = 24 , jointName = "Torso_UpperLeftArm")
-		pyrosim.Send_Motor_Neuron( name = 25 , jointName = "UpperLeftArm_LowerLeftArm")
+		#pyrosim.Send_Motor_Neuron( name = 24 , jointName = "Torso_UpperLeftArm")
+		#pyrosim.Send_Motor_Neuron( name = 25 , jointName = "UpperLeftArm_LowerLeftArm")
 
 		#Right arm
-		pyrosim.Send_Motor_Neuron( name = 26 , jointName = "Torso_UpperRightArm")
-		pyrosim.Send_Motor_Neuron( name = 27 , jointName = "UpperRightArm_LowerRightArm")
-
-
+		#pyrosim.Send_Motor_Neuron( name = 26 , jointName = "Torso_UpperRightArm")
+		#pyrosim.Send_Motor_Neuron( name = 27 , jointName = "UpperRightArm_LowerRightArm")
 
 
 		for currentRow in range(c.numSensorNeurons):
