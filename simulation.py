@@ -36,7 +36,7 @@ class SIMULATION:
 		for t in range(c.simulationSize):
 			p.stepSimulation()
 			self.robot.Sense(t)
-			self.robot.Think()
+			self.robot.Think(t)
 			self.robot.Act(t)
 
 			if self.directOrGUI == "GUI":

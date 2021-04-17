@@ -54,12 +54,11 @@ class ROBOT:
 					desiredAngle = c.allowableTargetAngles[neuronName][0]
 				if desiredAngle > c.allowableTargetAngles[neuronName][1]:
 					desiredAngle = c.allowableTargetAngles[neuronName][1]
-				print(desiredAngle)
 				self.motors[jointName].Set_Value(self.robot, desiredAngle)
 
-	def Think(self):
+	def Think(self, time):
 		self.nn.Update()
-		#self.nn.Print()
+		torsoState = p.getLinkState(self.robot, 0)
 
 	def Get_Fitness(self):
 
