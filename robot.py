@@ -11,6 +11,7 @@ class ROBOT:
 	def __init__(self, solutionID):
 
 		self.solutionID = solutionID
+		self.fitnessList = []
 		self.robot = p.loadURDF("body" + self.solutionID + ".urdf")
 		pyrosim.Prepare_To_Simulate("body" + self.solutionID + ".urdf")
 		self.Prepare_To_Sense()
@@ -58,7 +59,8 @@ class ROBOT:
 
 	def Think(self, time):
 		self.nn.Update()
-		torsoState = p.getLinkState(self.robot, 0)
+		torsoState = p.getBasePositionAndOrientation(self.robot)
+		distance = torsoState[0][0]
 
 	def Get_Fitness(self):
 
