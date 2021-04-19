@@ -5,6 +5,7 @@ from motor import MOTOR
 from pyrosim.neuralNetwork import NEURAL_NETWORK
 import os
 import constants as c
+import numpy
 
 class ROBOT:
 
@@ -60,16 +61,22 @@ class ROBOT:
 	def Think(self, time):
 		self.nn.Update()
 		torsoState = p.getBasePositionAndOrientation(self.robot)
+		leftFootState = p.getLinkState(self.robot, 2)
+		rightFootState = p.getLinkState(self.robot, 9)
 		distance = torsoState[0][0]
+		hipRotationX = torsoState[1][0]
+		hipRotationY = torsoState[1][1]
+		hipRotationZ = torsoState[1][2]
+		leftFootRotationZ = leftFootState[1][2]
+		rightFootRotationZ = rightFootState[1][2]
+		fitness = distance * (1/(1+abs(hipRotationX))) * (1/(1+abs(hipRotationY))) * (1/(1+abs(hipRotationZ))) * (1/(1+abs(leftFootRotationZ))) * (1/(1+abs(rightFootRotationZ)))
+		self.fitnessList.append(fitness)
+
 
 	def Get_Fitness(self):
+		finalFitness = numpy.mean(self.fitnessList)
 
-		basePositionAndOrientation = p.getBasePositionAndOrientation(self.robot)
-		basePosition = basePositionAndOrientation[0]
-		xPosition = basePosition[0]
-		zPosition = basePosition[2]
-		fitnessValue = -2*zPosition + xPosition
 		tempFitness = open("tmp" + self.solutionID + ".txt", "w")
-		tempFitness.write(str(fitnessValue))
+		tempFitness.write(str(finalFitness))
 		tempFitness.close()
 		os.system("rename tmp" + self.solutionID + ".txt" " fitness" + self.solutionID + ".txt")
