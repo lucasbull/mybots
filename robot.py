@@ -76,7 +76,7 @@ class ROBOT:
 		hipRotationZ = torsoState[1][2]
 		leftFootRotationZ = leftFootState[1][2]
 		rightFootRotationZ = rightFootState[1][2]
-		fitness = distance * (1/(1+2*abs(hipRotationX))) * (1/(1+2*abs(hipRotationY))) * (1/(1+2*abs(hipRotationZ))) * (1/(1+2*abs(leftFootRotationZ))) * (1/(1+2*abs(rightFootRotationZ)))
+		fitness = distance * (1/(1+2*abs(hipRotationX))) * (1/(1+4*abs(hipRotationY))) * (1/(1+2*abs(hipRotationZ))) * (1/(1+2*abs(leftFootRotationZ))) * (1/(1+2*abs(rightFootRotationZ)))
 		self.fitnessList.append(fitness)
 
 
