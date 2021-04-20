@@ -7,7 +7,7 @@ import time
 
 class SIMULATION:
 
-	def __init__(self, directOrGUI, solutionID):
+	def __init__(self, directOrGUI, solutionID, showArms):
 
 		self.directOrGUI = directOrGUI
 
@@ -29,7 +29,7 @@ class SIMULATION:
 
 
 		self.world = WORLD(solutionID)
-		self.robot = ROBOT(solutionID)
+		self.robot = ROBOT(solutionID, showArms)
 
 
 	def Run(self):

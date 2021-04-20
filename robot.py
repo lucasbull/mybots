@@ -9,8 +9,9 @@ import numpy
 
 class ROBOT:
 
-	def __init__(self, solutionID):
+	def __init__(self, solutionID, showArms):
 
+		self.showArms = showArms
 		self.solutionID = solutionID
 		self.fitnessList = []
 		self.robot = p.loadURDF("body" + self.solutionID + ".urdf")
@@ -46,16 +47,22 @@ class ROBOT:
 
 	def Act(self, time):
 
+		if self.showArms:
+			allowableTargetAngles = c.allowableTargetAnglesWithArms
+
+		else:
+			allowableTargetAngles = c.allowableTargetAnglesWithoutArms
+
 		for neuronName in self.nn.Get_Neuron_Names():
 
 			if self.nn.Is_Motor_Neuron(neuronName):
 
 				jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
-				desiredAngle = self.nn.Get_Value_Of(neuronName)
-				if desiredAngle < c.allowableTargetAngles[neuronName][0]:
-					desiredAngle = c.allowableTargetAngles[neuronName][0]
-				if desiredAngle > c.allowableTargetAngles[neuronName][1]:
-					desiredAngle = c.allowableTargetAngles[neuronName][1]
+				neuronValue = self.nn.Get_Value_Of(neuronName)
+				#Allowable interval (a, b)
+				a = allowableTargetAngles[neuronName][0]
+				b = allowableTargetAngles[neuronName][1]
+				desiredAngle = (b-a)*(numpy.arctan(4*neuronValue)/c.pi)+(b+a)/2
 				self.motors[jointName].Set_Value(self.robot, desiredAngle)
 
 	def Think(self, time):
