@@ -70,13 +70,13 @@ class ROBOT:
 		torsoState = p.getBasePositionAndOrientation(self.robot)
 		leftFootState = p.getLinkState(self.robot, 2)
 		rightFootState = p.getLinkState(self.robot, 9)
-		distance = torsoState[0][0]
+		distance = (leftFootState[0][0]+rightFootState[0][0]+torsoState[0][0])/3
 		hipRotationX = torsoState[1][0]
 		hipRotationY = torsoState[1][1]
 		hipRotationZ = torsoState[1][2]
 		leftFootRotationZ = leftFootState[1][2]
 		rightFootRotationZ = rightFootState[1][2]
-		fitness = distance * (1/(1+abs(hipRotationX))) * (1/(1+abs(hipRotationY))) * (1/(1+abs(hipRotationZ))) * (1/(1+abs(leftFootRotationZ))) * (1/(1+abs(rightFootRotationZ)))
+		fitness = distance * (1/(1+2*abs(hipRotationX))) * (1/(1+2*abs(hipRotationY))) * (1/(1+2*abs(hipRotationZ))) * (1/(1+2*abs(leftFootRotationZ))) * (1/(1+2*abs(rightFootRotationZ)))
 		self.fitnessList.append(fitness)
 
 
