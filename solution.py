@@ -11,10 +11,13 @@ class SOLUTION:
 
 		self.myID = myID
 		if showArms:
-			self.weights = numpy.random.rand(c.numSensorNeurons, c.numMotorNeuronsWithArms)
+			self.weightsFirst = numpy.random.rand(c.numSensorNeurons, c.numHiddenNeurons)
+			self.weightsSecond = numpy.random.rand(c.numHiddenNeurons, c.numMotorNeuronsWithArms)
 		else:
-			self.weights = numpy.random.rand(c.numSensorNeurons, c.numMotorNeuronsWithoutArms)			
-		self.weights = self.weights * 2 - 1
+			self.weightsFirst = numpy.random.rand(c.numSensorNeurons, c.numHiddenNeurons)
+			self.weightsSecond = numpy.random.rand(c.numHiddenNeurons, c.numMotorNeuronsWithoutArms)			
+		self.weightsFirst = self.weightsFirst * 2 - 1
+		self.weightsSecond = self.weightsSecond * 2 - 1
 		self.showArms = showArms
 
 	def Start_Simulation(self, directOrGUI, needFitness):
@@ -164,37 +167,40 @@ class SOLUTION:
 		pyrosim.Send_Sensor_Neuron(name = 9 , linkName = "RightHeel")
 
 
+		#Hidden Neurons
+		pyrosim.Send_Hidden_Neuron(name = 10)
+
 		#Motor Neurons
 		#Left foot
-		pyrosim.Send_Motor_Neuron( name = 10 , jointName = "LowerLeftLeg_MiddleLeftFoot")
-		pyrosim.Send_Motor_Neuron( name = 11 , jointName = "MiddleLeftFoot_LeftLeftFoot")
-		pyrosim.Send_Motor_Neuron( name = 12 , jointName = "MiddleLeftFoot_RightLeftFoot")
-		pyrosim.Send_Motor_Neuron( name = 13 , jointName = "MiddleLeftFoot_LeftToes")
-		pyrosim.Send_Motor_Neuron( name = 14 , jointName = "MiddleLeftFoot_LeftHeel")
+		pyrosim.Send_Motor_Neuron( name = 11 , jointName = "LowerLeftLeg_MiddleLeftFoot")
+		pyrosim.Send_Motor_Neuron( name = 12 , jointName = "MiddleLeftFoot_LeftLeftFoot")
+		pyrosim.Send_Motor_Neuron( name = 13 , jointName = "MiddleLeftFoot_RightLeftFoot")
+		pyrosim.Send_Motor_Neuron( name = 14 , jointName = "MiddleLeftFoot_LeftToes")
+		pyrosim.Send_Motor_Neuron( name = 15 , jointName = "MiddleLeftFoot_LeftHeel")
 
 		#Right foot
-		pyrosim.Send_Motor_Neuron( name = 15 , jointName = "LowerRightLeg_MiddleRightFoot")
-		pyrosim.Send_Motor_Neuron( name = 16 , jointName = "MiddleRightFoot_LeftRightFoot")
-		pyrosim.Send_Motor_Neuron( name = 17 , jointName = "MiddleRightFoot_RightRightFoot")
-		pyrosim.Send_Motor_Neuron( name = 18 , jointName = "MiddleRightFoot_RightToes")
-		pyrosim.Send_Motor_Neuron( name = 19 , jointName = "MiddleRightFoot_RightHeel")
+		pyrosim.Send_Motor_Neuron( name = 16 , jointName = "LowerRightLeg_MiddleRightFoot")
+		pyrosim.Send_Motor_Neuron( name = 17 , jointName = "MiddleRightFoot_LeftRightFoot")
+		pyrosim.Send_Motor_Neuron( name = 18 , jointName = "MiddleRightFoot_RightRightFoot")
+		pyrosim.Send_Motor_Neuron( name = 19 , jointName = "MiddleRightFoot_RightToes")
+		pyrosim.Send_Motor_Neuron( name = 20 , jointName = "MiddleRightFoot_RightHeel")
 
 		#Left leg
-		pyrosim.Send_Motor_Neuron( name = 20 , jointName = "Torso_UpperLeftLeg")
-		pyrosim.Send_Motor_Neuron( name = 21 , jointName = "UpperLeftLeg_LowerLeftLeg")
+		pyrosim.Send_Motor_Neuron( name = 21 , jointName = "Torso_UpperLeftLeg")
+		pyrosim.Send_Motor_Neuron( name = 22 , jointName = "UpperLeftLeg_LowerLeftLeg")
 
 		#Right leg
-		pyrosim.Send_Motor_Neuron( name = 22 , jointName = "Torso_UpperRightLeg")
-		pyrosim.Send_Motor_Neuron( name = 23 , jointName = "UpperRightLeg_LowerRightLeg")
+		pyrosim.Send_Motor_Neuron( name = 23 , jointName = "Torso_UpperRightLeg")
+		pyrosim.Send_Motor_Neuron( name = 24 , jointName = "UpperRightLeg_LowerRightLeg")
 
 		if self.showArms:
 			#Left arm
-			pyrosim.Send_Motor_Neuron( name = 24 , jointName = "Torso_UpperLeftArm")
-			pyrosim.Send_Motor_Neuron( name = 25 , jointName = "UpperLeftArm_LowerLeftArm")
+			pyrosim.Send_Motor_Neuron( name = 25 , jointName = "Torso_UpperLeftArm")
+			pyrosim.Send_Motor_Neuron( name = 26 , jointName = "UpperLeftArm_LowerLeftArm")
 
 			#Right arm
-			pyrosim.Send_Motor_Neuron( name = 26 , jointName = "Torso_UpperRightArm")
-			pyrosim.Send_Motor_Neuron( name = 27 , jointName = "UpperRightArm_LowerRightArm")
+			pyrosim.Send_Motor_Neuron( name = 27 , jointName = "Torso_UpperRightArm")
+			pyrosim.Send_Motor_Neuron( name = 28 , jointName = "UpperRightArm_LowerRightArm")
 
 			numMotorNeurons	= c.numMotorNeuronsWithArms
 
@@ -202,10 +208,16 @@ class SOLUTION:
 			numMotorNeurons = c.numMotorNeuronsWithoutArms
 
 		for currentRow in range(c.numSensorNeurons):
-			for currentColumn in range(numMotorNeurons):
+			for currentColumn in range(c.numHiddenNeurons):
 
 				pyrosim.Send_Synapse(sourceNeuronName = currentRow , targetNeuronName = currentColumn + c.numSensorNeurons , weight = 
-				self.weights[currentRow][currentColumn])
+				self.weightsFirst[currentRow][currentColumn])
+
+		for currentRow in range(c.numHiddenNeurons):
+			for currentColumn in range(numMotorNeurons):
+
+				pyrosim.Send_Synapse(sourceNeuronName = currentRow + c.numSensorNeurons , targetNeuronName = currentColumn + c.numSensorNeurons + c.numHiddenNeurons , weight = 
+				self.weightsSecond[currentRow][currentColumn])
 		pyrosim.End()
 
 	def Mutate(self):
@@ -216,9 +228,18 @@ class SOLUTION:
 		else:
 			numMotorNeurons = c.numMotorNeuronsWithoutArms
 
-		randomColumn = random.randint(0, c.numSensorNeurons - 1)
-		randomRow = random.randint(0, numMotorNeurons - 1)
-		self.weights[randomColumn][randomRow] = random.random() * 2 - 1
+		numMutations = random.randint(1,2)
+
+		for mutation in range(numMutations):
+			firstOrSecondWeights = random.randint(0,1)
+			if firstOrSecondWeights == 0:
+				randomColumn = random.randint(0, c.numSensorNeurons - 1)
+				randomRow = random.randint(0, c.numHiddenNeurons - 1)
+				self.weightsFirst[randomColumn][randomRow] = random.random() * 2 - 1
+			else:
+				randomColumn = random.randint(0, c.numHiddenNeurons - 1)
+				randomRow = random.randint(0, numMotorNeurons - 1)
+				self.weightsSecond[randomColumn][randomRow] = random.random() * 2 - 1
 
 	def Set_ID(self, myID):
 		self.myID = myID

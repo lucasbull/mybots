@@ -9,23 +9,24 @@ motorMaxForce = 50
 timeStepGUI = 1/60
 motorJointRange = 1
 
-populationSize = 10
-numberOfGenerations = 10
+populationSize = 1
+numberOfGenerations = 1
 
 numSensorNeurons = 10
+numHiddenNeurons = 1
 numMotorNeuronsWithoutArms = 14
 numMotorNeuronsWithArms = 18
 
 robotScale = 4
 
-allowableTargetAnglesWithArms = {"10":(-1,0.5),"11":(-0.05,0.05),"12":(-0.05,0.05),"13":(-0.25,0.25),"14":(-0.05,0.05),	#Left foot
-						"15":(-1,0.5),"16":(-0.05,0.05),"17":(-0.05,0.05),"18":(-0.25,0.25),"19":(-0.05,0.05),	#Right foot
-						"20":(-0.1,1),"21":(-1,0),								#Left leg
-						"22":(-0.1,1),"23":(-1,0),								#Right leg
-						"24":(-1,1),"25":(0,1),									#Left shoulder, elbow
-						"26":(-1,1),"27":(0,1)}									#Right shoulder, elbow
+allowableTargetAnglesWithArms = [(-1,0.5),(-0.05,0.05),(-0.05,0.05),(-0.25,0.25),(-0.05,0.05),	#Left foot
+						(-1,0.5),(-0.05,0.05),(-0.05,0.05),(-0.25,0.25),(-0.05,0.05),	#Right foot
+						(-0.1,1),(-1,0),								#Left leg
+						(-0.1,1),(-1,0),								#Right leg
+						(-1,1),(0,1),									#Left shoulder, elbow
+						(-1,1),(0,1)]									#Right shoulder, elbow
 
-allowableTargetAnglesWithoutArms = {"10":(-1,0.5),"11":(-0.05,0.05),"12":(-0.05,0.05),"13":(-0.25,0.25),"14":(-0.05,0.05),	#Left foot
-						"15":(-1,0.5),"16":(-0.05,0.05),"17":(-0.05,0.05),"18":(-0.25,0.25),"19":(-0.05,0.05),	#Right foot
-						"20":(-0.1,1),"21":(-1,0),								#Left leg
-						"22":(-0.1,1),"23":(-1,0)}								#Right leg
+allowableTargetAnglesWithoutArms = [(-1,0.5),(-0.05,0.05),(-0.05,0.05),(-0.25,0.25),(-0.05,0.05),	#Left foot
+						(-1,0.5),(-0.05,0.05),(-0.05,0.05),(-0.25,0.25),(-0.05,0.05),	#Right foot
+						(-0.1,1),(-1,0),								#Left leg
+						(-0.1,1),(-1,0)]								#Right leg

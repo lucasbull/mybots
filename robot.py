@@ -54,14 +54,14 @@ class ROBOT:
 			allowableTargetAngles = c.allowableTargetAnglesWithoutArms
 
 		for neuronName in self.nn.Get_Neuron_Names():
-
 			if self.nn.Is_Motor_Neuron(neuronName):
 
 				jointName = self.nn.Get_Motor_Neurons_Joint(neuronName)
 				neuronValue = self.nn.Get_Value_Of(neuronName)
+				motorNeuronNumber = int(neuronName) - (c.numSensorNeurons + c.numHiddenNeurons)
 				#Allowable interval (a, b)
-				a = allowableTargetAngles[neuronName][0]
-				b = allowableTargetAngles[neuronName][1]
+				a = allowableTargetAngles[motorNeuronNumber][0]
+				b = allowableTargetAngles[motorNeuronNumber][1]
 				desiredAngle = (b-a)*(numpy.arctan(4*neuronValue)/c.pi)+(b+a)/2
 				self.motors[jointName].Set_Value(self.robot, desiredAngle)
 
