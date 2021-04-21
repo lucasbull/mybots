@@ -15,9 +15,11 @@ class SOLUTION:
 			self.weightsSecond = numpy.random.rand(c.numHiddenNeurons, c.numMotorNeuronsWithArms)
 		else:
 			self.weightsFirst = numpy.random.rand(c.numSensorNeurons, c.numHiddenNeurons)
-			self.weightsSecond = numpy.random.rand(c.numHiddenNeurons, c.numMotorNeuronsWithoutArms)			
+			self.weightsSecond = numpy.random.rand(c.numHiddenNeurons, c.numMotorNeuronsWithoutArms)	
+		self.weightsRecurrent = numpy.random.rand(1,10)		
 		self.weightsFirst = self.weightsFirst * 2 - 1
 		self.weightsSecond = self.weightsSecond * 2 - 1
+		self.weightsRecurrent = self.weightsRecurrent * 2 - 1
 		self.showArms = showArms
 
 	def Start_Simulation(self, directOrGUI, needFitness):
@@ -222,6 +224,12 @@ class SOLUTION:
 
 				pyrosim.Send_Synapse(sourceNeuronName = currentRow + c.numSensorNeurons , targetNeuronName = currentColumn + c.numSensorNeurons + c.numHiddenNeurons , weight = 
 				self.weightsSecond[currentRow][currentColumn])
+
+		#Recurrent Connections
+		for currentColumn in range(10):
+			pyrosim.Send_Synapse(sourceNeuronName = currentColumn , targetNeuronName = currentColumn , weight = 
+			self.weightsRecurrent[0][currentColumn])
+
 		pyrosim.End()
 
 	def Mutate(self):
@@ -232,18 +240,24 @@ class SOLUTION:
 		else:
 			numMotorNeurons = c.numMotorNeuronsWithoutArms
 
-		numMutations = random.randint(1,2)
+		numMutations = random.randint(1,3)
 
 		for mutation in range(numMutations):
-			firstOrSecondWeights = random.randint(0,1)
-			if firstOrSecondWeights == 0:
-				randomColumn = random.randint(0, c.numSensorNeurons - 1)
-				randomRow = random.randint(0, c.numHiddenNeurons - 1)
-				self.weightsFirst[randomColumn][randomRow] = random.random() * 2 - 1
-			else:
+			selectArray = random.randint(0,2)
+			if selectArray == 0:
+				randomRow = random.randint(0, c.numSensorNeurons - 1)
 				randomColumn = random.randint(0, c.numHiddenNeurons - 1)
-				randomRow = random.randint(0, numMotorNeurons - 1)
-				self.weightsSecond[randomColumn][randomRow] = random.random() * 2 - 1
+				self.weightsFirst[randomRow][randomColumn] = random.random() * 2 - 1
+			if selectArray == 1:
+				randomRow = random.randint(0, c.numHiddenNeurons - 1)
+				randomColumn = random.randint(0, numMotorNeurons - 1)
+				self.weightsSecond[randomRow][randomColumn] = random.random() * 2 - 1
+			else:
+				randomRow = 0
+				randomColumn = random.randint(0,9)
+				self.weightsRecurrent[randomRow][randomColumn] = random.random() * 2 - 1
+
+
 
 	def Set_ID(self, myID):
 		self.myID = myID

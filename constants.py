@@ -5,12 +5,12 @@ pi = np.pi
 gravity_x = 0
 gravity_y = 0
 gravity_z = -9.8
-motorMaxForce = 50
+motorMaxForce = 30
 timeStepGUI = 1/60
 motorJointRange = 1
 
-populationSize = 15
-numberOfGenerations = 25
+populationSize = 20
+numberOfGenerations = 55
 
 numSensorNeurons = 10
 numHiddenNeurons = 5
