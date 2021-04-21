@@ -16,7 +16,7 @@ class SOLUTION:
 		else:
 			self.weightsFirst = numpy.random.rand(c.numSensorNeurons, c.numHiddenNeurons)
 			self.weightsSecond = numpy.random.rand(c.numHiddenNeurons, c.numMotorNeuronsWithoutArms)	
-		self.weightsRecurrent = numpy.random.rand(1,10)		
+		self.weightsRecurrent = numpy.random.rand(c.numHiddenNeurons, c.numHiddenNeurons)		
 		self.weightsFirst = self.weightsFirst * 2 - 1
 		self.weightsSecond = self.weightsSecond * 2 - 1
 		self.weightsRecurrent = self.weightsRecurrent * 2 - 1
@@ -175,38 +175,43 @@ class SOLUTION:
 		pyrosim.Send_Hidden_Neuron(name = 12)
 		pyrosim.Send_Hidden_Neuron(name = 13)
 		pyrosim.Send_Hidden_Neuron(name = 14)
+		pyrosim.Send_Hidden_Neuron(name = 15)
+		pyrosim.Send_Hidden_Neuron(name = 16)
+		pyrosim.Send_Hidden_Neuron(name = 17)
+		pyrosim.Send_Hidden_Neuron(name = 18)
+		pyrosim.Send_Hidden_Neuron(name = 19)
 
 		#Motor Neurons
 		#Left foot
-		pyrosim.Send_Motor_Neuron( name = 15 , jointName = "LowerLeftLeg_MiddleLeftFoot")
-		pyrosim.Send_Motor_Neuron( name = 16 , jointName = "MiddleLeftFoot_LeftLeftFoot")
-		pyrosim.Send_Motor_Neuron( name = 17 , jointName = "MiddleLeftFoot_RightLeftFoot")
-		pyrosim.Send_Motor_Neuron( name = 18 , jointName = "MiddleLeftFoot_LeftToes")
-		pyrosim.Send_Motor_Neuron( name = 19 , jointName = "MiddleLeftFoot_LeftHeel")
+		pyrosim.Send_Motor_Neuron( name = 20 , jointName = "LowerLeftLeg_MiddleLeftFoot")
+		pyrosim.Send_Motor_Neuron( name = 21 , jointName = "MiddleLeftFoot_LeftLeftFoot")
+		pyrosim.Send_Motor_Neuron( name = 22 , jointName = "MiddleLeftFoot_RightLeftFoot")
+		pyrosim.Send_Motor_Neuron( name = 23 , jointName = "MiddleLeftFoot_LeftToes")
+		pyrosim.Send_Motor_Neuron( name = 24 , jointName = "MiddleLeftFoot_LeftHeel")
 
 		#Right foot
-		pyrosim.Send_Motor_Neuron( name = 20 , jointName = "LowerRightLeg_MiddleRightFoot")
-		pyrosim.Send_Motor_Neuron( name = 21 , jointName = "MiddleRightFoot_LeftRightFoot")
-		pyrosim.Send_Motor_Neuron( name = 22 , jointName = "MiddleRightFoot_RightRightFoot")
-		pyrosim.Send_Motor_Neuron( name = 23 , jointName = "MiddleRightFoot_RightToes")
-		pyrosim.Send_Motor_Neuron( name = 24 , jointName = "MiddleRightFoot_RightHeel")
+		pyrosim.Send_Motor_Neuron( name = 25 , jointName = "LowerRightLeg_MiddleRightFoot")
+		pyrosim.Send_Motor_Neuron( name = 26 , jointName = "MiddleRightFoot_LeftRightFoot")
+		pyrosim.Send_Motor_Neuron( name = 27 , jointName = "MiddleRightFoot_RightRightFoot")
+		pyrosim.Send_Motor_Neuron( name = 28 , jointName = "MiddleRightFoot_RightToes")
+		pyrosim.Send_Motor_Neuron( name = 29 , jointName = "MiddleRightFoot_RightHeel")
 
 		#Left leg
-		pyrosim.Send_Motor_Neuron( name = 25 , jointName = "Torso_UpperLeftLeg")
-		pyrosim.Send_Motor_Neuron( name = 26 , jointName = "UpperLeftLeg_LowerLeftLeg")
+		pyrosim.Send_Motor_Neuron( name = 30 , jointName = "Torso_UpperLeftLeg")
+		pyrosim.Send_Motor_Neuron( name = 31 , jointName = "UpperLeftLeg_LowerLeftLeg")
 
 		#Right leg
-		pyrosim.Send_Motor_Neuron( name = 27 , jointName = "Torso_UpperRightLeg")
-		pyrosim.Send_Motor_Neuron( name = 28 , jointName = "UpperRightLeg_LowerRightLeg")
+		pyrosim.Send_Motor_Neuron( name = 32 , jointName = "Torso_UpperRightLeg")
+		pyrosim.Send_Motor_Neuron( name = 33 , jointName = "UpperRightLeg_LowerRightLeg")
 
 		if self.showArms:
 			#Left arm
-			pyrosim.Send_Motor_Neuron( name = 29 , jointName = "Torso_UpperLeftArm")
-			pyrosim.Send_Motor_Neuron( name = 30 , jointName = "UpperLeftArm_LowerLeftArm")
+			pyrosim.Send_Motor_Neuron( name = 34 , jointName = "Torso_UpperLeftArm")
+			pyrosim.Send_Motor_Neuron( name = 35 , jointName = "UpperLeftArm_LowerLeftArm")
 
 			#Right arm
-			pyrosim.Send_Motor_Neuron( name = 31 , jointName = "Torso_UpperRightArm")
-			pyrosim.Send_Motor_Neuron( name = 32 , jointName = "UpperRightArm_LowerRightArm")
+			pyrosim.Send_Motor_Neuron( name = 36 , jointName = "Torso_UpperRightArm")
+			pyrosim.Send_Motor_Neuron( name = 37 , jointName = "UpperRightArm_LowerRightArm")
 
 			numMotorNeurons	= c.numMotorNeuronsWithArms
 
@@ -226,9 +231,10 @@ class SOLUTION:
 				self.weightsSecond[currentRow][currentColumn])
 
 		#Recurrent Connections
-		for currentColumn in range(10):
-			pyrosim.Send_Synapse(sourceNeuronName = currentColumn , targetNeuronName = currentColumn , weight = 
-			self.weightsRecurrent[0][currentColumn])
+		for currentRow in range(c.numHiddenNeurons):
+			for currentColumn in range(c.numHiddenNeurons):
+				pyrosim.Send_Synapse(sourceNeuronName = currentColumn + c.numSensorNeurons , targetNeuronName = currentColumn + c.numSensorNeurons , weight = 
+				self.weightsRecurrent[currentRow][currentColumn])
 
 		pyrosim.End()
 
@@ -240,10 +246,10 @@ class SOLUTION:
 		else:
 			numMotorNeurons = c.numMotorNeuronsWithoutArms
 
-		numMutations = random.randint(1,3)
+		numMutations = random.randint(1,6)
 
 		for mutation in range(numMutations):
-			selectArray = random.randint(0,2)
+			selectArray = random.randint(0,3)
 			if selectArray == 0:
 				randomRow = random.randint(0, c.numSensorNeurons - 1)
 				randomColumn = random.randint(0, c.numHiddenNeurons - 1)
@@ -253,8 +259,8 @@ class SOLUTION:
 				randomColumn = random.randint(0, numMotorNeurons - 1)
 				self.weightsSecond[randomRow][randomColumn] = random.random() * 2 - 1
 			else:
-				randomRow = 0
-				randomColumn = random.randint(0,9)
+				randomRow = random.randint(0, c.numHiddenNeurons - 1)
+				randomColumn = random.randint(0, c.numHiddenNeurons - 1)
 				self.weightsRecurrent[randomRow][randomColumn] = random.random() * 2 - 1
 
 
