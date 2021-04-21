@@ -6,6 +6,7 @@ from pyrosim.neuralNetwork import NEURAL_NETWORK
 import os
 import constants as c
 import numpy
+import math
 
 class ROBOT:
 
@@ -67,20 +68,49 @@ class ROBOT:
 
 	def Think(self, time):
 		self.nn.Update()
+		
+		#Get the link states
 		torsoState = p.getBasePositionAndOrientation(self.robot)
 		leftFootState = p.getLinkState(self.robot, 2)
 		rightFootState = p.getLinkState(self.robot, 9)
+
+		#Caculate distance (average of torso and both feet)
 		distance = (leftFootState[0][0]+rightFootState[0][0]+torsoState[0][0])/3
-		hipRotationX = torsoState[1][0]
-		hipRotationY = torsoState[1][1]
-		hipRotationZ = torsoState[1][2]
-		leftFootRotationZ = leftFootState[1][2]
-		rightFootRotationZ = rightFootState[1][2]
-		fitness = distance * (1/(1+2*abs(hipRotationX))) * (1/(1+4*abs(hipRotationY))) * (1/(1+2*abs(hipRotationZ))) * (1/(1+2*abs(leftFootRotationZ))) * (1/(1+2*abs(rightFootRotationZ)))
+
+		#Get all quaternion values
+		#Torso/hip		
+		qxHip = torsoState[1][0]
+		qyHip = torsoState[1][1]
+		qzHip = torsoState[1][2]
+		qwHip = torsoState[1][3]
+
+		#Left foot
+		qxLFoot = leftFootState[1][0]
+		qyLFoot = leftFootState[1][1]
+		qzLFoot = leftFootState[1][2]
+		qwLFoot = leftFootState[1][3]	
+		
+		#Right foot
+		qxRFoot = rightFootState[1][0]
+		qyRFoot = rightFootState[1][1]
+		qzRFoot = rightFootState[1][2]
+		qwRFoot = rightFootState[1][3]	
+
+		#Translate to rotations about the axes
+		hipRotationX = math.atan2(2*qxHip*qwHip-2*qyHip*qzHip , 1 - 2*qxHip**2 - 2*qzHip**2)				#Torso Falling Sideways
+		hipRotationY = math.atan2(2*qyHip*qwHip-2*qxHip*qzHip,1 - 2*qyHip**2 - 2*qzHip**2)					#Torso Falling Forward
+		hipRotationZ = math.asin(2*qxHip*qyHip + 2*qzHip*qwHip)												#Torso Turning
+
+		leftFootRotationZ = math.asin(2*qxLFoot*qyLFoot + 2*qzLFoot*qwLFoot)										#Left Foot Turning
+
+		rightFootRotationZ = math.asin(2*qxRFoot*qyRFoot + 2*qzRFoot*qwRFoot)										#Right Foot Turning
+
+		#Get full fitness value and add to the list
+		fitness = distance * (1/(1+abs(hipRotationX))) * (1/(1+abs(hipRotationY))) * (1/(1+abs(hipRotationZ))) * (1/(1+abs(leftFootRotationZ))) * (1/(1+abs(rightFootRotationZ)))
 		self.fitnessList.append(fitness)
 
-
 	def Get_Fitness(self):
+		
 		finalFitness = numpy.mean(self.fitnessList)
 
 		tempFitness = open("tmp" + self.solutionID + ".txt", "w")
