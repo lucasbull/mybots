@@ -10,7 +10,7 @@ timeStepGUI = 1/60
 motorJointRange = 1
 
 populationSize = 15
-numberOfGenerations = 25
+numberOfGenerations = 35
 
 numSensorNeurons = 10
 numHiddenNeurons = 10

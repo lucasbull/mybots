@@ -1,7 +1,7 @@
 import os
 from parallelHillClimber import PARALLEL_HILL_CLIMBER
 
-showArms = True
+showArms = False
 
 phc = PARALLEL_HILL_CLIMBER(showArms)
 phc.Evolve()

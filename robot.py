@@ -75,7 +75,7 @@ class ROBOT:
 		rightFootState = p.getLinkState(self.robot, 9)
 
 		#Caculate distance (average of torso and both feet)
-		distance = (leftFootState[0][0]+rightFootState[0][0]+torsoState[0][0])/3
+		distance = max(leftFootState[0][0],rightFootState[0][0],torsoState[0][0])
 
 		#Get all quaternion values
 		#Torso/hip		
@@ -97,8 +97,8 @@ class ROBOT:
 		qwRFoot = rightFootState[1][3]	
 
 		#Translate to rotations about the axes
-		hipRotationX = math.atan2(2*qxHip*qwHip-2*qyHip*qzHip , 1 - 2*qxHip**2 - 2*qzHip**2)				#Torso Falling Sideways
-		hipRotationY = math.atan2(2*qyHip*qwHip-2*qxHip*qzHip,1 - 2*qyHip**2 - 2*qzHip**2)					#Torso Falling Forward
+		hipRotationX = math.atan2(2*qxHip*qwHip-2*qyHip*qzHip, 1 - 2*qxHip**2 - 2*qzHip**2)				#Torso Falling Sideways
+		hipRotationY = math.atan2(2*qyHip*qwHip-2*qxHip*qzHip, 1 - 2*qyHip**2 - 2*qzHip**2)					#Torso Falling Forward
 		hipRotationZ = math.asin(2*qxHip*qyHip + 2*qzHip*qwHip)												#Torso Turning
 
 		leftFootRotationZ = math.asin(2*qxLFoot*qyLFoot + 2*qzLFoot*qwLFoot)										#Left Foot Turning
@@ -107,6 +107,7 @@ class ROBOT:
 
 		#Get full fitness value and add to the list
 		fitness = distance * (1/(1+abs(hipRotationX))) * (1/(1+abs(hipRotationY))) * (1/(1+abs(hipRotationZ))) * (1/(1+abs(leftFootRotationZ))) * (1/(1+abs(rightFootRotationZ)))
+
 		self.fitnessList.append(fitness)
 
 	def Get_Fitness(self):
