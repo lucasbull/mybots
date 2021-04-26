@@ -15,6 +15,8 @@ class ROBOT:
 		self.showArms = showArms
 		self.solutionID = solutionID
 		self.fitnessList = []
+		self.notFallenYet = True
+		self.timeFell = 1
 		self.robot = p.loadURDF("body" + self.solutionID + ".urdf")
 		pyrosim.Prepare_To_Simulate("body" + self.solutionID + ".urdf")
 		self.Prepare_To_Sense()
@@ -68,7 +70,7 @@ class ROBOT:
 
 	def Think(self, time):
 		self.nn.Update()
-		
+
 		#Get the link states
 		torsoState = p.getBasePositionAndOrientation(self.robot)
 		leftFootState = p.getLinkState(self.robot, 2)
@@ -106,13 +108,25 @@ class ROBOT:
 		rightFootRotationZ = math.asin(2*qxRFoot*qyRFoot + 2*qzRFoot*qwRFoot)										#Right Foot Turning
 
 		#Get full fitness value and add to the list
-		fitness = distance * (1/(1+abs(hipRotationX))) * (1/(1+abs(hipRotationY))) * (1/(1+abs(hipRotationZ))) * (1/(1+abs(leftFootRotationZ))) * (1/(1+abs(rightFootRotationZ)))
+		fitness = distance 
+		#* (1/(1+abs(hipRotationX))) * (1/(1+abs(hipRotationY))) * (1/(1+abs(hipRotationZ))) * (1/(1+abs(leftFootRotationZ))) * (1/(1+abs(rightFootRotationZ)))
+
+		#Initialize flag
+		fallen = False
+
+		if torsoState[0][2] <= 3/c.robotScale:
+			fallen = True
+
+		if fallen and self.notFallenYet:
+
+			self.timeFell = time/c.simulationSize
+			self.notFallenYet = False
 
 		self.fitnessList.append(fitness)
 
 	def Get_Fitness(self):
 		
-		finalFitness = numpy.mean(self.fitnessList)
+		finalFitness = (self.timeFell)**2 * numpy.mean(self.fitnessList)
 
 		tempFitness = open("tmp" + self.solutionID + ".txt", "w")
 		tempFitness.write(str(finalFitness))

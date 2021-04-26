@@ -76,7 +76,7 @@ class PARALLEL_HILL_CLIMBER:
 			solutions[solution].Wait_For_Simulation_To_End()
 
 	def Show_Best(self):
-		currentFitness = 100
+		currentFitness = 1000000000000000000
 		for key in self.parents:
 			if self.parents[key].fitness < currentFitness:
 				bestKey = key
