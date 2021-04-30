@@ -108,13 +108,12 @@ class ROBOT:
 		rightFootRotationZ = math.asin(2*qxRFoot*qyRFoot + 2*qzRFoot*qwRFoot)										#Right Foot Turning
 
 		#Get full fitness value and add to the list
-		fitness = distance 
-		#* (1/(1+abs(hipRotationX))) * (1/(1+abs(hipRotationY))) * (1/(1+abs(hipRotationZ))) * (1/(1+abs(leftFootRotationZ))) * (1/(1+abs(rightFootRotationZ)))
+		fitness = distance * (1/(1+abs(hipRotationZ)))
 
 		#Initialize flag
 		fallen = False
 
-		if torsoState[0][2] <= 3/c.robotScale:
+		if torsoState[0][2] <= 4/c.robotScale:
 			fallen = True
 
 		if fallen and self.notFallenYet:
