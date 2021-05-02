@@ -13,6 +13,8 @@ class PARALLEL_HILL_CLIMBER:
 		os.system("del body*.urdf")
 		os.system("del world*.sdf")
 
+		self.showArms = showArms
+
 		self.nextAvailableID = 0
 
 		self.parents = {
@@ -61,6 +63,14 @@ class PARALLEL_HILL_CLIMBER:
 		for key in self.parents:
 			if self.parents[key].fitness > self.children[key].fitness:
 				self.parents[key] = self.children[key]
+				os.system("del brain" + str(self.parents[key].myID) + ".nndf")
+				os.system("del body" + str(self.parents[key].myID) + ".urdf")
+				os.system("del world" + str(self.parents[key].myID) + ".sdf")
+
+			else:
+				os.system("del brain" + str(self.children[key].myID) + ".nndf")
+				os.system("del body" + str(self.children[key].myID) + ".urdf")
+				os.system("del world" + str(self.children[key].myID) + ".sdf")
 
 	def Print(self):
 		print()
@@ -83,3 +93,8 @@ class PARALLEL_HILL_CLIMBER:
 				currentFitness = self.parents[key].fitness
 		self.parents[bestKey].Start_Simulation("GUI", False)
 		print("Best fitness: " + str(self.parents[bestKey].fitness))
+		if os.path.exists("bestRobot.txt"):
+			os.system("del bestRobot.txt")
+		keyFitnessGenerationPopulation = open("bestRobot.txt", "w")
+		keyFitnessGenerationPopulation.write(str(self.parents[bestKey].myID) + "\n" + str(self.showArms))
+		keyFitnessGenerationPopulation.close()

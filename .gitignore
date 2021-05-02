@@ -5,3 +5,4 @@ body*.urdf
 fitness*.txt
 tmp*.txt
 world*.sdf
+bestRobot.txt

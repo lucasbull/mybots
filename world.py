@@ -7,4 +7,3 @@ class WORLD:
 
 		self.planeId = p.loadURDF("plane.urdf")
 		p.loadSDF("world" + solutionID + ".sdf")
-		os.system("del world" + solutionID + ".sdf")
