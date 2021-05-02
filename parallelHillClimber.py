@@ -62,10 +62,10 @@ class PARALLEL_HILL_CLIMBER:
 
 		for key in self.parents:
 			if self.parents[key].fitness > self.children[key].fitness:
-				self.parents[key] = self.children[key]
 				os.system("del brain" + str(self.parents[key].myID) + ".nndf")
 				os.system("del body" + str(self.parents[key].myID) + ".urdf")
 				os.system("del world" + str(self.parents[key].myID) + ".sdf")
+				self.parents[key] = self.children[key]
 
 			else:
 				os.system("del brain" + str(self.children[key].myID) + ".nndf")
