@@ -5,7 +5,7 @@ pi = np.pi
 gravity_x = 0
 gravity_y = 0
 gravity_z = -9.8
-motorMaxForce = 50
+motorMaxForce = 35
 timeStepGUI = 1/60
 motorJointRange = 1
 
