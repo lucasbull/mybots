@@ -85,29 +85,28 @@ class ROBOT:
 		qwHip = torsoState[1][3]
 
 		#Left foot
-		qxLFoot = leftFootState[1][0]
-		qyLFoot = leftFootState[1][1]
-		qzLFoot = leftFootState[1][2]
-		qwLFoot = leftFootState[1][3]	
+		#qxLFoot = leftFootState[1][0]
+		#qyLFoot = leftFootState[1][1]
+		#qzLFoot = leftFootState[1][2]
+		#qwLFoot = leftFootState[1][3]	
 		
 		#Right foot
-		qxRFoot = rightFootState[1][0]
-		qyRFoot = rightFootState[1][1]
-		qzRFoot = rightFootState[1][2]
-		qwRFoot = rightFootState[1][3]	
+		#qxRFoot = rightFootState[1][0]
+		#qyRFoot = rightFootState[1][1]
+		#qzRFoot = rightFootState[1][2]
+		#qwRFoot = rightFootState[1][3]	
 
 		#Translate to rotations about the axes
-		hipRotationX = math.atan2(2*qxHip*qwHip-2*qyHip*qzHip, 1 - 2*qxHip**2 - 2*qzHip**2)				#Torso Falling Sideways
-		hipRotationY = math.atan2(2*qyHip*qwHip-2*qxHip*qzHip, 1 - 2*qyHip**2 - 2*qzHip**2)					#Torso Falling Forward
+		#hipRotationX = math.atan2(2*qxHip*qwHip-2*qyHip*qzHip, 1 - 2*qxHip**2 - 2*qzHip**2)				#Torso Falling Sideways
+		#hipRotationY = math.atan2(2*qyHip*qwHip-2*qxHip*qzHip, 1 - 2*qyHip**2 - 2*qzHip**2)					#Torso Falling Forward
 		hipRotationZ = math.asin(2*qxHip*qyHip + 2*qzHip*qwHip)												#Torso Turning
 
-		leftFootRotationZ = math.asin(2*qxLFoot*qyLFoot + 2*qzLFoot*qwLFoot)										#Left Foot Turning
+		#leftFootRotationZ = math.asin(2*qxLFoot*qyLFoot + 2*qzLFoot*qwLFoot)										#Left Foot Turning
 
-		rightFootRotationZ = math.asin(2*qxRFoot*qyRFoot + 2*qzRFoot*qwRFoot)										#Right Foot Turning
+		#rightFootRotationZ = math.asin(2*qxRFoot*qyRFoot + 2*qzRFoot*qwRFoot)										#Right Foot Turning
 
 		#Get full fitness value and add to the list
 		fitness = distance * (1/(1+abs(hipRotationZ)))
-
 		#Initialize flag
 		fallen = False
 

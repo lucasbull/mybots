@@ -1,10 +1,10 @@
 import os
 
-name = "Bob"
+name = "286"
 directOrGUI = "GUI"
 needFitness = str(False)
 
-filename = open("files\\" + name + ".txt", "r")
+filename = open("files\\bestRobot.txt", "r")
 originalID = filename.readline().rstrip()
 showArms = str(filename.readline()).rstrip()
 fitness = str(filename.readline())
