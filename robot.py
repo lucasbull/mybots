@@ -120,9 +120,10 @@ class ROBOT:
 
 		self.fitnessList.append(fitness)
 
+
 	def Get_Fitness(self):
 		
-		finalFitness = (self.timeFell)**2 * numpy.mean(self.fitnessList)
+		finalFitness = (self.timeFell)**4 * numpy.mean(self.fitnessList)
 
 		tempFitness = open("files\\tmp" + self.solutionID + ".txt", "w")
 		tempFitness.write(str(finalFitness))
