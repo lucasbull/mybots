@@ -30,7 +30,7 @@ class SOLUTION:
 		os.system(string)
 
 	def Wait_For_Simulation_To_End(self):
-		fitnessFileName = "fitness" + str(self.myID) + ".txt"
+		fitnessFileName = "files\\fitness" + str(self.myID) + ".txt"
 		while not os.path.exists(fitnessFileName):
 			time.sleep(0.01)
 		time.sleep(0.01)
@@ -40,14 +40,14 @@ class SOLUTION:
 		os.system("del " + fitnessFileName)
 
 	def Create_World(self):
-		pyrosim.Start_SDF("world" + str(self.myID) + ".sdf")
+		pyrosim.Start_SDF("files\\world" + str(self.myID) + ".sdf")
 		#pyrosim.Send_Cube(name="Box", pos=[-3,3,0.5] ,
 		#size=[1,1,1])
 		pyrosim.End()
 
 	def Create_Body(self):
 		#Body/Torso
-		pyrosim.Start_URDF("body" + str(self.myID) + ".urdf")
+		pyrosim.Start_URDF("files\\body" + str(self.myID) + ".urdf")
 		pyrosim.Send_Cube(name="Torso", pos=[0,0,5.5/c.robotScale] ,
 		size=[1/c.robotScale,2/c.robotScale,3/c.robotScale], mass=c.totalRobotMass*0.52)
 
@@ -151,7 +151,7 @@ class SOLUTION:
 
 	def Create_Brain(self):
 		#Brain
-		pyrosim.Start_NeuralNetwork("brain" + str(self.myID) + ".nndf")
+		pyrosim.Start_NeuralNetwork("files\\brain" + str(self.myID) + ".nndf")
 
 		#Sensor Neurons
 		#Left foot

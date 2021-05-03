@@ -6,4 +6,4 @@ class WORLD:
 	def __init__(self, solutionID):
 
 		self.planeId = p.loadURDF("plane.urdf")
-		p.loadSDF("world" + solutionID + ".sdf")
+		p.loadSDF("files\\world" + solutionID + ".sdf")

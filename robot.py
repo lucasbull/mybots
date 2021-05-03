@@ -17,11 +17,11 @@ class ROBOT:
 		self.fitnessList = []
 		self.notFallenYet = True
 		self.timeFell = 1
-		self.robot = p.loadURDF("body" + self.solutionID + ".urdf")
-		pyrosim.Prepare_To_Simulate("body" + self.solutionID + ".urdf")
+		self.robot = p.loadURDF("files\\body" + self.solutionID + ".urdf")
+		pyrosim.Prepare_To_Simulate("files\\body" + self.solutionID + ".urdf")
 		self.Prepare_To_Sense()
 		self.Prepare_To_Act()
-		self.nn = NEURAL_NETWORK("brain" + self.solutionID + ".nndf")
+		self.nn = NEURAL_NETWORK("files\\brain" + self.solutionID + ".nndf")
 
 
 	def Prepare_To_Sense(self):
@@ -125,7 +125,7 @@ class ROBOT:
 		
 		finalFitness = (self.timeFell)**2 * numpy.mean(self.fitnessList)
 
-		tempFitness = open("tmp" + self.solutionID + ".txt", "w")
+		tempFitness = open("files\\tmp" + self.solutionID + ".txt", "w")
 		tempFitness.write(str(finalFitness))
 		tempFitness.close()
-		os.system("rename tmp" + self.solutionID + ".txt" " fitness" + self.solutionID + ".txt")
+		os.system("rename files\\tmp" + self.solutionID + ".txt" " fitness" + self.solutionID + ".txt")

@@ -3,15 +3,16 @@ import constants as c
 import copy
 import os
 
+
 class PARALLEL_HILL_CLIMBER:
 
 	def __init__(self, showArms):
 
-		os.system("del brain*.nndf")
-		os.system("del fitness*.txt")
-		os.system("del tmp*.txt")
-		os.system("del body*.urdf")
-		os.system("del world*.sdf")
+		os.system('del files\\brain*.nndf')
+		os.system('del files\\fitness*.txt')
+		os.system('del files\\tmp*.txt')
+		os.system('del files\\body*.urdf')
+		os.system('del files\\world*.sdf')
 
 		self.showArms = showArms
 
@@ -62,15 +63,15 @@ class PARALLEL_HILL_CLIMBER:
 
 		for key in self.parents:
 			if self.parents[key].fitness > self.children[key].fitness:
-				os.system("del brain" + str(self.parents[key].myID) + ".nndf")
-				os.system("del body" + str(self.parents[key].myID) + ".urdf")
-				os.system("del world" + str(self.parents[key].myID) + ".sdf")
+				os.system("del files\\brain" + str(self.parents[key].myID) + ".nndf")
+				os.system("del files\\body" + str(self.parents[key].myID) + ".urdf")
+				os.system("del files\\world" + str(self.parents[key].myID) + ".sdf")
 				self.parents[key] = self.children[key]
 
 			else:
-				os.system("del brain" + str(self.children[key].myID) + ".nndf")
-				os.system("del body" + str(self.children[key].myID) + ".urdf")
-				os.system("del world" + str(self.children[key].myID) + ".sdf")
+				os.system("del files\\brain" + str(self.children[key].myID) + ".nndf")
+				os.system("del files\\body" + str(self.children[key].myID) + ".urdf")
+				os.system("del files\\world" + str(self.children[key].myID) + ".sdf")
 
 	def Print(self):
 		print()
@@ -93,8 +94,21 @@ class PARALLEL_HILL_CLIMBER:
 				currentFitness = self.parents[key].fitness
 		self.parents[bestKey].Start_Simulation("GUI", False)
 		print("Best fitness: " + str(self.parents[bestKey].fitness))
-		if os.path.exists("bestRobot.txt"):
-			os.system("del bestRobot.txt")
-		keyFitnessGenerationPopulation = open("bestRobot.txt", "w")
-		keyFitnessGenerationPopulation.write(str(self.parents[bestKey].myID) + "\n" + str(self.showArms))
+		if os.path.exists("files\\bestRobot.txt"):
+			os.system("del files\\bestRobot.txt")
+		bestID = str(self.parents[bestKey].myID)
+		keyFitnessGenerationPopulation = open("files\\bestRobot.txt", "w")
+		keyFitnessGenerationPopulation.write(bestID + "\n" + str(self.showArms) + "\n" + str(self.parents[bestKey].fitness))
 		keyFitnessGenerationPopulation.close()
+
+		os.system("rename files\\brain" + bestID + ".nndf" " bestbrain.nndf")
+		os.system("rename files\\body" + bestID + ".urdf" " bestbody.urdf")
+		os.system("rename files\\world" + bestID + ".sdf" " bestworld.sdf")
+
+		os.system("del files\\brain*.nndf")
+		os.system("del files\\body*.urdf")
+		os.system("del files\\world*.sdf")
+
+		os.system("rename files\\bestbrain.nndf" + " brain" + bestID + ".nndf")
+		os.system("rename files\\bestbody.urdf" + " body" + bestID + ".urdf")
+		os.system("rename files\\bestworld.sdf" + " world" + bestID + ".sdf")
