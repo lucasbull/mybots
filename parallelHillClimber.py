@@ -34,6 +34,7 @@ class PARALLEL_HILL_CLIMBER:
 		for currentGeneration in range(c.numberOfGenerations):
 
 			#print("Current Generation:", currentGeneration)
+			print(str(currentGeneration) + " out of " + str(c.numberOfGenerations))
 			self.Evolve_For_One_Generation()
 
 
