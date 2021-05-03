@@ -10,8 +10,8 @@ timeStepGUI = 1/60
 motorJointRange = 1
 
 #------------------------------------------
-populationSize = 10
-numberOfGenerations = 5
+populationSize = 50
+numberOfGenerations = 100
 #------------------------------------------
 
 numSensorNeurons = 10
