@@ -1,0 +1,7 @@
+1723
+False
+-0.6399748437200888
+
+done with 100 pop size, 50 generations
+big jumps
+1000 simulation size

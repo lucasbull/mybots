@@ -1,6 +1,6 @@
 import numpy as np
 
-simulationSize = 1500
+simulationSize = 1000
 pi = np.pi
 gravity_x = 0
 gravity_y = 0
@@ -10,8 +10,8 @@ timeStepGUI = 1/60
 motorJointRange = 1
 
 #------------------------------------------
-populationSize = 75
-numberOfGenerations = 150
+populationSize = 5
+numberOfGenerations = 5
 #------------------------------------------
 
 numSensorNeurons = 10

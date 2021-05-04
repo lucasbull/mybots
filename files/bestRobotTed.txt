@@ -1,0 +1,4 @@
+9974
+False
+-1.2662051835255892
+Ted shuffles along, very stable. Evolved from 75 population, 150 generations.

@@ -1,0 +1,6 @@
+1946
+False
+-0.9054881768930079
+
+pop: 75, generations: 50
+first one eveolved with actual recurrent connections. this actually looks like walking and I'm very excited.
