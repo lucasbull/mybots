@@ -246,7 +246,7 @@ class SOLUTION:
 		else:
 			numMotorNeurons = c.numMotorNeuronsWithoutArms
 
-		numMutations = random.randint(1,5)
+		numMutations = random.randint(1,8)
 
 		for mutation in range(numMutations):
 			selectArray = random.randint(0,3)
