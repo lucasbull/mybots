@@ -1,6 +1,6 @@
 import os
 
-name = "Bobby"
+name = "1723"
 directOrGUI = "GUI"
 needFitness = str(False)
 
