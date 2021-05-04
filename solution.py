@@ -233,7 +233,7 @@ class SOLUTION:
 		#Recurrent Connections
 		for currentRow in range(c.numHiddenNeurons):
 			for currentColumn in range(c.numHiddenNeurons):
-				pyrosim.Send_Synapse(sourceNeuronName = currentColumn + c.numSensorNeurons , targetNeuronName = currentColumn + c.numSensorNeurons , weight = 
+				pyrosim.Send_Synapse(sourceNeuronName = currentRow + c.numSensorNeurons , targetNeuronName = currentColumn + c.numSensorNeurons , weight = 
 				self.weightsRecurrent[currentRow][currentColumn])
 
 		pyrosim.End()
